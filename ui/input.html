@@ -12,28 +12,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 <!-- import custome css-->
-<style>
-    body {
-        background-color: #F4F4FE;
-    }
-    .cv {
-        height: 556px;
-        background-color: #C5C5D2;
-        margin: 16px;
-    }
-    
-    .navbar {
-        width: 1076px;
-        height: 240px;
-        background-color: #FFFFFF;
-        margin: 32px;
-    }
-    
-    .breadcrum {
-        height: 158px;
-        background-color: #C4C4C4;
-    }
-</style>
+<link href="assets/css/modif.css" rel="stylesheet">
 
 <body>
 
@@ -58,170 +37,178 @@
     <!--Content-->
     <div class="container">
 
+        <!--content-->
         <div class="row">
-            <div class="col-6">
+
+        <!--Content Kanan-->
+        <div class="col-6">
+            <div class="col div-container">
                 <h5>Identity</h5>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                
-                <div class="row">
-
-                    <form>
-                        <div class="form-group mx-sm-3 mb-2">
-                            <input type="file" class="form-control-file" id="exampleFormControlFile1">
-                        </div>
-                    </form>
-                
-                </div>
-
-                <div class="row">
-                    
-                    <div class="form-group mx-sm-3 mb-2">
+                <form>
+                    <div class="form-group">
+                        <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                    </div>
+                    <div class="div-content-row">
                         <input type="text" class="form-control" id="fullname" aria-describedby="fullname" placeholder="Your Full Name">
+                        <div style="width: 16px;"></div>
+                        <input type="text" class="form-control" id="job" aria-describedby="job" placeholder="Your Position">
                     </div>
-                    
-                    <div class="form-group mx-sm-3 mb-2">
-                        <input type="text" class="form-control" id="job" aria-describedby="job" placeholder="Your Job Position">
+                    <div class="div-content-row">
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Your responsibilty"></textarea>
                     </div>
-
-                </div>
-                    
+                </form>
             </div>
 
-            <div class="col-6">
-                <h5>Experience</h5>
+            <div class="col div-container">
+                <h5>Contact</h5>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-
-                <div class="row">
-                    
-                    <div class="form-group mx-sm-3 mb-2">
-                        <input type="text" class="form-control" id="fullname" aria-describedby="role" placeholder="Job role">
+                <form>
+                    <div class="div-content-row">
+                        <input type="text" class="form-control" id="fullname" aria-describedby="fullname" placeholder="Number/Name Social Media">
+                        <div style="width: 16px;"></div>
+                        <input type="text" class="form-control" id="job" aria-describedby="job" placeholder="Link/Number">
                     </div>
-                    
-                    <div class="form-group mx-sm-3 mb-2">
-                        <input type="text" class="form-control" id="job" aria-describedby="name-instansi" placeholder="name-instansi">
+                    <div class="row justify-content-end">
+                        <button type="button" class="btn btn-outline-danger justify-content-end">Delete This Contact</button>
                     </div>
-
-                    <div class="form-group mx-sm-3 mb-2">
-                        <input type="date" class="form-control" id="fullname" aria-describedby="date-start" placeholder="date-start">
-                    </div>
-                    
-                    <div class="form-group mx-sm-3 mb-2">
-                        <input type="date" class="form-control" id="job" aria-describedby="date-start" placeholder="end-start">
-                    </div>
-                    
-                    <div class="input-group mb-3">
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Describe Your Responsibity"></textarea>
-                    </div>
-
-                </div>
-
-                
-                <div class="row justify-content-end">
-                    <div class="col-5">
-                        <button type="button" class="btn btn-danger justify-content-end">Delete This Experience</button>
-                    </div>
-                </div>
-                <hr>
-
+                    <hr>
+                </form>
                 <div class="row justify-content-center">
-                    <div class="col-5">
-                        <button type="submit" class="btn btn-light mb-2">Add More Experience</button>
-                    </div>
+                    <button type="button" class="btn btn-outline-primary">Add more</button>
                 </div>
-
             </div>
 
-            <div class="col-6">
+            <div class="col div-container">
                 <h5>Educate</h5>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-
-                <div class="row">
-                    
-                    <div class="form-group mx-sm-3 mb-2">
-                        <input type="text" class="form-control" id="fullname" aria-describedby="role" placeholder="Your Program Study">
+                <form>
+                    <div class="div-content-row">
+                        <input type="text" class="form-control" id="fullname" aria-describedby="fullname" placeholder="Program Study">
+                        <div style="width: 16px;"></div>
+                        <input type="text" class="form-control" id="job" aria-describedby="job" placeholder="School Name">
                     </div>
                     
-                    <div class="form-group mx-sm-3 mb-2">
-                        <input type="text" class="form-control" id="job" aria-describedby="name-instansi" placeholder="name-instansi-educate">
-                    </div>
-
-                    <div class="form-group mx-sm-3 mb-2">
-                        <input type="date" class="form-control" id="fullname" aria-describedby="date-start" placeholder="date-start">
+                    <div class="div-content-row">
+                        <input type="date" class="form-control" id="fullname" aria-describedby="fullname" placeholder="Date Start">
+                        <div style="width: 16px;"></div>
+                        <input type="date" class="form-control" id="job" aria-describedby="job" placeholder="Date End">
                     </div>
                     
-                    <div class="form-group mx-sm-3 mb-2">
-                        <input type="date" class="form-control" id="job" aria-describedby="date-start" placeholder="end-start">
+                    <div class="div-content-row">
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Describe about your Educate"></textarea>
                     </div>
-
-                    <div class="input-group mb-3">
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Describe Your"></textarea>
+                    <div class="row justify-content-end">
+                        <button type="button" class="btn btn-outline-danger justify-content-end">Delete This Educate</button>
                     </div>
-                
-                </div>
-
-                <div class="row justify-content-end">
-                    <div class="col-5">
-                        <button type="button" class="btn btn-danger justify-content-end">Delete This Educate</button>
-                    </div>
-                </div>
-                <hr>
+                    <hr>
+                </form>
                 <div class="row justify-content-center">
-                    <div class="col-5">
-                        <button type="submit" class="btn btn-light mb-2">Add More Educate</button>
+                    <button type="button" class="btn btn-outline-primary">Add more</button>
+                </div>
+            </div>
+            
+            <div class="col div-container">
+                <h5>Hobby</h5>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <form>
+                    <div class="div-content-row">
+                        <input type="text" class="form-control" id="fullname" aria-describedby="fullname" placeholder="Hobby 1">
                     </div>
+                    <div class="row justify-content-end">
+                        <button type="button" class="btn btn-outline-danger justify-content-end">Delete This Hobby</button>
+                    </div>
+                    <hr>
+                </form>
+                <div class="row justify-content-center">
+                    <button type="button" class="btn btn-outline-primary">Add more</button>
                 </div>
             </div>
 
 
-            <div class="col-6">
-                <h5>Contact</h5>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>    
-                <div class="row">
-                    <div class="form-group mx-sm-3 mb-2">
-                        <input type="text" class="form-control" id="job" aria-describedby="job" placeholder="Social Media">
-                    </div>
-                    
-                    <div class="form-group mx-sm-3 mb-2">
-                        <input type="link" class="form-control" id="job" aria-describedby="job" placeholder="http link">
-                    </div>
-                </div>
-                <div class="row justify-content-center">
-                    <div class="col-5">
-                        <button type="submit" class="btn btn-light mb-2">Add More Educate</button>
-                    </div>
-                </div>  
-            </div>
-
-            <div class="col-6">
-                <h5>Appreciation</h5>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>    
-                <div class="row">
-                    <div class="form-group mx-sm-3 mb-2">
-                        <input type="text" class="form-control" id="job" aria-describedby="job" placeholder="name-appreciation">
-                    </div>
-                    
-                    <div class="form-group mx-sm-3 mb-2">
-                        <input type="text" class="form-control" id="job" aria-describedby="job" placeholder="instansi">
-                    </div>
-
-                    <div class="form-group mx-sm-3 mb-2">
-                        <input type="date" class="form-control" id="job" aria-describedby="job" placeholder="">
-                    </div>
-                    
-                    <div class="input-group mb-3">
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Describe Your"></textarea>
-                    </div>
-                </div>
-                <div class="row justify-content-center">
-                    <div class="col-5">
-                        <button type="submit" class="btn btn-light mb-2">Add More Appreciation</button>
-                    </div>
-                </div>  
-            </div>
 
         </div>
-    </div>
 
+        <!--Content kiri-->
+        <div class="col-6">
+
+            <div class="col div-container">
+                <h5>Experience</h5>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <form>
+                    <div class="div-content-row">
+                        <input type="text" class="form-control" id="fullname" aria-describedby="fullname" placeholder="Job Role">
+                        <div style="width: 16px;"></div>
+                        <input type="text" class="form-control" id="job" aria-describedby="job" placeholder="Organization Name">
+                    </div>
+                    
+                    <div class="div-content-row">
+                        <input type="date" class="form-control" id="fullname" aria-describedby="fullname" placeholder="Date Start">
+                        <div style="width: 16px;"></div>
+                        <input type="date" class="form-control" id="job" aria-describedby="job" placeholder="Date End">
+                    </div>
+                    
+                    <div class="div-content-row">
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Your responsibilty"></textarea>
+                    </div>
+                    <div class="row justify-content-end">
+                        <button type="button" class="btn btn-outline-danger justify-content-end">Delete This Experience</button>
+                    </div>
+                    <hr>
+                </form>
+                <div class="row justify-content-center">
+                    <button type="button" class="btn btn-outline-primary">Add more</button>
+                </div>
+            </div>
+            
+            <div class="col div-container">
+                <h5>Appreciation</h5>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <form>
+                    <div class="div-content-row">
+                        <input type="text" class="form-control" id="fullname" aria-describedby="fullname" placeholder="Name Appreciation">
+                        <div style="width: 16px;"></div>
+                        <input type="text" class="form-control" id="job" aria-describedby="job" placeholder="Appreciation give from">
+                    </div>
+                    
+                    <div class="div-content-row">
+                        <input type="date" class="form-control" id="fullname" aria-describedby="fullname" placeholder="Award Date">
+                    </div>
+                    
+                    <div class="div-content-row">
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Describe about your Appreciation"></textarea>
+                    </div>
+                    <div class="row justify-content-end">
+                        <button type="button" class="btn btn-outline-danger justify-content-end">Delete This Appreciation</button>
+                    </div>
+                    <hr>
+                </form>
+                <div class="row justify-content-center">
+                    <button type="button" class="btn btn-outline-primary">Add more</button>
+                </div>
+            </div>
+
+            <div class="col div-container">
+                <h5>Skills</h5>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <form>
+                    <div class="div-content-row">
+                        <input type="text" class="form-control" id="fullname" aria-describedby="fullname" placeholder="Skills">
+                    </div>
+                    <div class="row justify-content-end">
+                        <button type="button" class="btn btn-outline-danger justify-content-end">Delete This Skills</button>
+                    </div>
+                    <hr>
+                </form>
+                <div class="row justify-content-center">
+                    <button type="button" class="btn btn-outline-primary">Add more</button>
+                </div>
+            </div>
+
+            
+        </div>
+        </div>
+    </div>
 <div style="height: 400px;"></div>
 </body>
 </html>

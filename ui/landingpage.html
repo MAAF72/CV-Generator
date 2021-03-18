@@ -12,6 +12,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 <!-- import custome css-->
+<link href="assets/css/modif.css" rel="stylesheet">
 
 <body>
     
@@ -23,10 +24,7 @@
 
                 <!--Nav bar favicon-->
                 <div class="row">
-                    <div class="d-inline p-2">
-                        <img src="https://homepages.cae.wisc.edu/~ece533/images/airplane.png" style="width:48px">
-                    </div>
-                    <div class="d-inline p-2 align-self-center">
+                    <div class="d-inline p-2 text-center text-lg-start">
                         <h4>CV-Generator</h4>
                     </div>
                 </div>
@@ -40,30 +38,36 @@
             
                 <!-- Action -->
                 <div class="row">
-                    <div class="col-5">
+                    <div class="col-5 div-container">
                         <h5>Create CV</h5>
                         <p>create your cv easily and quickly, no need to design.</p>
-                        <button type="button" class="btn btn-primary">CREATE MY CV</button>
+                        <button type="button" class="btn btn-primary mb-2">CREATE MY CV</button>
                     </div>
                     
-                <div class="col-5">
-                    <h5>Edit My Old CV</h5>
-                    <p>unique code obtained before you download your old cv.</p>
-                    
-                    <form class="form-inline">
-                        <div class="form-group mx-sm-3 mb-2">
-                            <label for="input-unique-code" class="sr-only">unique code</label>
-                            <input type="text" class="form-control" id="input-unique-code" placeholder="unique code">
-                        </div>
-                        <button type="submit" class="btn btn-light mb-2">Edit</button>
-                    </form>
+                    <div class="col-5 div-container">
+                        <h5>Edit My Old CV</h5>
+                        <p>unique code obtained before you download your old cv.</p>
+                        
+                        <form class="form-inline">
+                            <div class="form-group mx-sm-3 mb-2">
+                                <label for="input-unique-code" class="sr-only">unique code</label>
+                                <input type="text" class="form-control" id="input-unique-code" placeholder="unique code">
+                            </div>
+                            <button type="submit" class="btn btn-light mb-2">Edit</button>
+                        </form>
 
-                </div>
+                    </div>
                 </div>
             
             </div>
         </div>
     </div>
-    
+
+    <footer class="text-center text-lg-start">
+        <div class="text-center p-3">
+            <p>1301180072 - 1301180154 - 1301180023 - ? </p>
+        </div>
+    </footer>
+
 </body>
 </html>
