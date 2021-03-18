@@ -12,20 +12,44 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 <!-- import custome css-->
+<style>
+    body {
+        background-color: #F4F4FE;
+    }
+    .cv {
+        height: 556px;
+        background-color: #C5C5D2;
+        margin: 16px;
+    }
+    
+    .navbar {
+        width: 1076px;
+        height: 240px;
+        background-color: #FFFFFF;
+        margin: 32px;
+    }
+    
+    .breadcrum {
+        height: 158px;
+        background-color: #C4C4C4;
+    }
+</style>
 
 <body>
 
     <!-- navbar -->
-    <div class="container">    
-        <div class="fixed-bottom bg-light">
-            <div class="col">
-                <div class="row">
-                    <div class="col">
-                        <h5>Ready for choose Template?</h5>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        <button type="submit" class="btn btn-light">Cancel</button>
-                        <button type="button" class="btn btn-primary">Choose Template</button>
-                    </div>
+    <div class="mx-auto navbar fixed-bottom">
+        <div class="container">
+            <div class="row" style="width: 100%">
+                <div class="col-6">
+                    <h5>Your CV ready to Download</h5>
+                    <p>Lorem ipsum dolor sit amet, consectur adipiscing elit.</p>
+                    
+                    <button type="button" class="btn btn-light text-uppercase font-weight-bolder">Back to input my data</button>
+                    <button type="button" class="btn btn-primary text-uppercase font-weight-bolder">Download to my CV</button>
+                </div>
+                <div class="col-6">
+                    <div class="breadcrum mx-auto"></div>
                 </div>
             </div>
         </div>
@@ -198,6 +222,6 @@
         </div>
     </div>
 
-<br><br><br><br><br>
+<div style="height: 400px;"></div>
 </body>
 </html>
