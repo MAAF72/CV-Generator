@@ -25,7 +25,7 @@
                     <p>Lorem ipsum dolor sit amet, consectur adipiscing elit.</p>
                     
                     <button type="button" class="btn btn-light text-uppercase font-weight-bolder">Back</button>
-                    <button type="button" class="btn btn-primary text-uppercase font-weight-bolder">Choose Template</button>
+                    <button type="button" id="btn-choose-template" class="btn btn-primary text-uppercase font-weight-bolder">Choose Template</button>
                 </div>
                 <div class="col-6">
                     <div class="breadcrum mx-auto"></div>
@@ -191,9 +191,9 @@
             <div class="col div-container">
                 <h5>Skills</h5>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                <form>
+                <form id="form-skills">
                     <div class="div-content-row">
-                        <input type="text" class="form-control" id="fullname" aria-describedby="fullname" placeholder="Skills">
+                        <input type="text" class="form-control" name="name" aria-describedby="fullname" placeholder="Skills">
                     </div>
                     <div class="row justify-content-end">
                         <button type="button" class="btn btn-outline-danger justify-content-end">Delete This Skills</button>
@@ -201,7 +201,7 @@
                     <hr>
                 </form>
                 <div class="row justify-content-center">
-                    <button type="button" class="btn btn-outline-primary">Add more</button>
+                    <button type="button" id="add-skills" class="btn btn-outline-primary">Add more</button>
                 </div>
             </div>
 
@@ -210,5 +210,42 @@
         </div>
     </div>
 <div style="height: 400px;"></div>
+
+<script>
+    $(function() {
+
+        function toJson(array) {
+            let datas = [];
+            $.each(array, function(k, v)  {
+                datas.push(
+                    {
+                        [v.name]: v.value
+                    }
+                )
+            })
+            return datas
+        }
+        $(document).on('click', '#add-skills', function() {
+            var html = `<div class="div-content-row">
+                        <input type="text" class="form-control" name="name" aria-describedby="fullname" placeholder="Skills">
+                    </div>`;
+            $('#form-skills').append(html);
+        });
+
+        $(document).on('click', '#btn-choose-template', function() {
+            // Ambil selector dari semua form
+            let formSkills = toJson($('#form-skills').serializeArray());
+
+            let datas = {
+                //'appreciation': formAppreciations,
+                'skills': formSkills
+            }
+
+            console.log(formSkills);
+
+        });
+    });
+    
+</script>
 </body>
 </html>
