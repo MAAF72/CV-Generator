@@ -45,32 +45,43 @@
             <div class="col div-container">
                 <h5>Identity</h5>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                <form>
+                <form id="form-customer">
                     <div class="form-group">
-                        <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                        <input type="file" name="photo" class="form-control-file" id="exampleFormControlFile1">
                     </div>
                     <div class="div-content-row">
-                        <input type="text" class="form-control" id="fullname" aria-describedby="fullname" placeholder="Your Full Name">
+                        <input type="text" class="form-control" id="name" name="name" aria-describedby="fullname" placeholder="Your Full Name">
                         <div style="width: 16px;"></div>
-                        <input type="text" class="form-control" id="job" aria-describedby="job" placeholder="Your Position">
+                        <input type="text" class="form-control" id="email" name="email" aria-describedby="Email" placeholder="Email">
                     </div>
                     <div class="div-content-row">
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Your responsibilty"></textarea>
+                        <input type="text" class="form-control" id="noHp" name="noHp" aria-describedby="Phone" placeholder="Phone">
+                        <div style="width: 16px;"></div>
+                        <input type="text" class="form-control" id="portFolio" name="portFolio" aria-describedby="portFolio" placeholder="portfolio">
+                    </div>
+                    <div class="div-content-row">
+                        <input type="text" class="form-control" id="job" name="job" aria-describedby="job" placeholder="Job">
+                    </div>
+                    <div class="div-content-row">
+                        <textarea class="form-control" id="deskripsi" name="deskripsi" rows="3" placeholder="Your responsibilty"></textarea>
                     </div>
                 </form>
             </div>
 
             <div class="col div-container">
-                <h5>Contact</h5>
+                <h5>Social Media</h5>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                <form>
+                <form id="form-socialmedia">
                     <div class="div-content-row">
-                        <input type="text" class="form-control" id="fullname" aria-describedby="fullname" placeholder="Number/Name Social Media">
+                        <input type="text" class="form-control" id="label" name="label" aria-describedby="label" placeholder="Social Media">
                         <div style="width: 16px;"></div>
-                        <input type="text" class="form-control" id="job" aria-describedby="job" placeholder="Link/Number">
+                        <input type="text" class="form-control" id="link" name="link" aria-describedby="link" placeholder="Link">
                     </div>
                     <div class="row justify-content-end">
-                        <button type="button" class="btn btn-outline-danger justify-content-end">Delete This Contact</button>
+                        <button type="button" class="btn btn-outline-danger justify-content-end"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+                            <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                          </svg>
+                        </button>
                     </div>
                     <hr>
                 </form>
@@ -82,24 +93,25 @@
             <div class="col div-container">
                 <h5>Educate</h5>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                <form>
+                <form id="form-edukasi">
                     <div class="div-content-row">
-                        <input type="text" class="form-control" id="fullname" aria-describedby="fullname" placeholder="Program Study">
+                        <input type="text" class="form-control" id="jenjang" name="jenjang" aria-describedby="jenjang" placeholder="Jenjang">
                         <div style="width: 16px;"></div>
-                        <input type="text" class="form-control" id="job" aria-describedby="job" placeholder="School Name">
+                        <input type="text" class="form-control" id="instansi" name="instansi" aria-describedby="instansi" placeholder="Instansi">
                     </div>
-                    
                     <div class="div-content-row">
-                        <input type="date" class="form-control" id="fullname" aria-describedby="fullname" placeholder="Date Start">
+                        <input type="date" class="form-control" id="tahun_mulai" name="tahun_mulai" aria-describedby="tahun_mulai" placeholder="Date Start">
                         <div style="width: 16px;"></div>
-                        <input type="date" class="form-control" id="job" aria-describedby="job" placeholder="Date End">
+                        <input type="date" class="form-control" id="tahun_selesai" name="tahun_selesai" aria-describedby="tahun_selesai" placeholder="Date End">
                     </div>
-                    
                     <div class="div-content-row">
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Describe about your Educate"></textarea>
+                        <textarea class="form-control" id="deskripsi" name="deskripsi" rows="3" placeholder="Describe about your Educate"></textarea>
                     </div>
                     <div class="row justify-content-end">
-                        <button type="button" class="btn btn-outline-danger justify-content-end">Delete This Educate</button>
+                        <button type="button" class="btn btn-outline-danger justify-content-end"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+                            <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                          </svg>
+                        </button>
                     </div>
                     <hr>
                 </form>
@@ -109,14 +121,45 @@
             </div>
             
             <div class="col div-container">
-                <h5>Hobby</h5>
+                <h5>Penghargaan</h5>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                <form>
+                <form id="form-penghargaan">
                     <div class="div-content-row">
-                        <input type="text" class="form-control" id="fullname" aria-describedby="fullname" placeholder="Hobby 1">
+                        <input type="text" class="form-control" id="name" name="name" aria-describedby="name" placeholder="Nama Penghargaan">
+                        <div style="width: 16px;"></div>
+                        <input type="text" class="form-control" id="instansi" name="instansi" aria-describedby="instansi" placeholder="Instansi">
+                    </div>
+                    <div class="div-content-row">
+                        <input type="date" class="form-control" id="tahun" name="tahun" aria-describedby="tahun" placeholder="tahun">
+                    </div>
+                    <div class="div-content-row">
+                        <textarea class="form-control" id="deskripsi" name="deskripsi" rows="3" placeholder="Describe about your Penghargaan"></textarea>
                     </div>
                     <div class="row justify-content-end">
-                        <button type="button" class="btn btn-outline-danger justify-content-end">Delete This Hobby</button>
+                        <button type="button" class="btn btn-outline-danger justify-content-end"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+                            <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                          </svg>
+                        </button>
+                    </div>
+                    <hr>
+                </form>
+                <div class="row justify-content-center">
+                    <button type="button" class="btn btn-outline-primary">Add more</button>
+                </div>
+            </div>
+
+            <div class="col div-container">
+                <h5>Kemampuan</h5>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <form id="form-kemampuan">
+                    <div class="div-content-row">
+                        <input type="text" class="form-control" id="kemampuan" name="kemampuan" aria-describedby="kemampuan" placeholder="Kemampuan">
+                    </div>
+                    <div class="row justify-content-end">
+                        <button type="button" class="btn btn-outline-danger justify-content-end"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+                            <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                          </svg>
+                        </button>
                     </div>
                     <hr>
                 </form>
@@ -133,26 +176,29 @@
         <div class="col-6">
 
             <div class="col div-container">
-                <h5>Experience</h5>
+                <h5>Pengalaman</h5>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                <form>
+                <form id="form-pengalaman">
                     <div class="div-content-row">
-                        <input type="text" class="form-control" id="fullname" aria-describedby="fullname" placeholder="Job Role">
+                        <input type="text" class="form-control" id="nama" name="nama" aria-describedby="nama" placeholder="Job Role">
                         <div style="width: 16px;"></div>
-                        <input type="text" class="form-control" id="job" aria-describedby="job" placeholder="Organization Name">
+                        <input type="text" class="form-control" id="instansi" name="instansi" aria-describedby="instansi" placeholder="Instansi">
                     </div>
                     
                     <div class="div-content-row">
-                        <input type="date" class="form-control" id="fullname" aria-describedby="fullname" placeholder="Date Start">
+                        <input type="date" class="form-control" id="tahun_mulai" name="tahun_mulai"aria-describedby="tahun_mulai" placeholder="Date Start">
                         <div style="width: 16px;"></div>
-                        <input type="date" class="form-control" id="job" aria-describedby="job" placeholder="Date End">
+                        <input type="date" class="form-control" id="tahun_selesai" name="tahun_selesai" aria-describedby="tahun_selesai" placeholder="Date End">
                     </div>
                     
                     <div class="div-content-row">
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Your responsibilty"></textarea>
+                        <textarea class="form-control" id="deskripsi" name="deskripsi" rows="3" placeholder="Your responsibilty"></textarea>
                     </div>
                     <div class="row justify-content-end">
-                        <button type="button" class="btn btn-outline-danger justify-content-end">Delete This Experience</button>
+                        <button type="button" class="btn btn-outline-danger justify-content-end"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+                            <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                          </svg>
+                        </button>
                     </div>
                     <hr>
                 </form>
@@ -162,24 +208,25 @@
             </div>
             
             <div class="col div-container">
-                <h5>Appreciation</h5>
+                <h5>Rujukan</h5>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                <form>
+                <form id="form-rujukan">
                     <div class="div-content-row">
-                        <input type="text" class="form-control" id="fullname" aria-describedby="fullname" placeholder="Name Appreciation">
+                        <input type="text" class="form-control" id="name" name="name" aria-describedby="name" placeholder="Name">
                         <div style="width: 16px;"></div>
-                        <input type="text" class="form-control" id="job" aria-describedby="job" placeholder="Appreciation give from">
+                        <input type="text" class="form-control" id="perusahaan" name="perusahaan" aria-describedby="perusahaan" placeholder="Perusahaan">
                     </div>
                     
                     <div class="div-content-row">
-                        <input type="date" class="form-control" id="fullname" aria-describedby="fullname" placeholder="Award Date">
-                    </div>
-                    
-                    <div class="div-content-row">
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Describe about your Appreciation"></textarea>
+                        <input type="text" class="form-control" id="noHp" name="noHp" aria-describedby="Phone" placeholder="Phone">
+                        <div style="width: 16px;"></div>
+                        <input type="text" class="form-control" id="email" name="email" aria-describedby="email" placeholder="email">
                     </div>
                     <div class="row justify-content-end">
-                        <button type="button" class="btn btn-outline-danger justify-content-end">Delete This Appreciation</button>
+                        <button type="button" class="btn btn-outline-danger justify-content-end"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+                            <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                          </svg>
+                        </button>
                     </div>
                     <hr>
                 </form>
@@ -189,11 +236,13 @@
             </div>
 
             <div class="col div-container">
-                <h5>Skills</h5>
+                <h5>Bahasa</h5>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                <form id="form-skills">
+                <form id="form-bahasa">
                     <div class="div-content-row">
-                        <input type="text" class="form-control" name="name" aria-describedby="fullname" placeholder="Skills">
+                        <input type="text" class="form-control" name="nama" aria-describedby="nama" placeholder="Bahasa">
+                        <div style="width: 16px;"></div>
+                        <input type="text" class="form-control" id="level" name="level" aria-describedby="level" placeholder="Level">
                     </div>
                     <div class="row justify-content-end">
                         <button type="button" class="btn btn-outline-danger justify-content-end">Delete This Skills</button>
@@ -201,9 +250,32 @@
                     <hr>
                 </form>
                 <div class="row justify-content-center">
-                    <button type="button" id="add-skills" class="btn btn-outline-primary">Add more</button>
+                    <button type="button" class="btn btn-outline-danger justify-content-end"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+                        <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                      </svg>
+                    </button>
                 </div>
             </div>
+
+            <!--
+
+                <div class="col div-container">
+                    <h5>Skills</h5>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    <form id="form-skills">
+                        <div class="div-content-row">
+                            <input type="text" class="form-control" name="name" aria-describedby="fullname" placeholder="Skills">
+                        </div>
+                        <div class="row justify-content-end">
+                            <button type="button" class="btn btn-outline-danger justify-content-end">Delete This Skills</button>
+                        </div>
+                        <hr>
+                    </form>
+                    <div class="row justify-content-center">
+                        <button type="button" id="add-skills" class="btn btn-outline-primary">Add more</button>
+                    </div>
+                </div>
+            -->
 
             
         </div>
