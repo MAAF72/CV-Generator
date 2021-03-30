@@ -259,6 +259,7 @@ $(function() {
             'code': uniqueCode,
             'customer': {
                 //customer identity
+                //'photo': formCustomer[0]["photo"],
                 'name': formCustomer[0]["name"],
                 'email': formCustomer[1]["email"],
                 'noHp': formCustomer[2]["noHp"],
