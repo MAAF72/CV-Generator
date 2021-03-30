@@ -245,6 +245,7 @@ $(function() {
     //get value
     $(document).on('click', '#btn-choose-template', function() {
         // Ambil selector dari semua form
+        let uniqueCode = "ABCDEFG";
         let formCustomer = toJson($('#form-customer').serializeArray()); 
         let formSocialmedia = toJson($('#form-socialmedia').serializeArray());
         let formEdukasi = toJson($('#form-edukasi').serializeArray());
@@ -255,14 +256,26 @@ $(function() {
         let formKemampuan = toJson($('#form-kemampuan').serializeArray());
 
         let datas = {
-            'customer': formCustomer,
-            'socialmedia':formSocialmedia,
-            'edukasi':formEdukasi,
-            'penghargaan':formPenghargaan,
-            'pengalaman':formPengalaman,
-            'rujukan':formRujukan,
-            'bahasa':formBahasa,
-            'kemampuan':formKemampuan,
+            'code': uniqueCode,
+            'customer': {
+                //customer identity
+                'name': formCustomer[0]["name"],
+                'email': formCustomer[1]["email"],
+                'noHp': formCustomer[2]["noHp"],
+                'portFolio': formCustomer[3]["portFolio"],
+                'job': formCustomer[4]["job"],
+                'deskripsi': formCustomer[5]["deskripsi"],
+
+                //component value
+                'socialmedia':formSocialmedia,
+                'edukasi':formEdukasi,
+                'penghargaan':formPenghargaan,
+                'pengalaman':formPengalaman,
+                'rujukan':formRujukan,
+                'bahasa':formBahasa,
+                'kemampuan':formKemampuan,
+            },
+            'template':{}
         }
 
         console.log(datas);
