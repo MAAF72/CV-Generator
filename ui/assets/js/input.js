@@ -1,15 +1,25 @@
 $(function() {
 
-    function toJson(array) {
-        let datas = [];
-        $.each(array, function(k, v)  {
-            datas.push(
-                {
-                    [v.name]: v.value
-                }
-            )
-        })
-        return datas
+    
+    function toJson(obj) {
+        let data = {}
+        $.each(obj, (k, v) => data[v.name] = v.value)
+        return data
+    }
+
+    function serialize(form, cnt) {
+        let arr = form.serializeArray()
+        if (arr.length % cnt != 0) throw Error('Macem tak betul yang ngoding')
+        
+        let res = []
+
+        for (let i = 0; i < arr.length; i += cnt) {
+            let temp = []
+            for (let j = 0; j < cnt; j++) temp.push(arr[i + j])
+            res.push(toJson(temp))
+        }
+
+        return res
     }
 
     //content-socialmedia
@@ -246,26 +256,19 @@ $(function() {
     $(document).on('click', '#btn-choose-template', function() {
         // Ambil selector dari semua form
         let uniqueCode = "ABCDEFG";
-        let formCustomer = toJson($('#form-customer').serializeArray()); 
-        let formSocialmedia = toJson($('#form-socialmedia').serializeArray());
-        let formEdukasi = toJson($('#form-edukasi').serializeArray());
-        let formPenghargaan = toJson($('#form-penghargaan').serializeArray());
-        let formPengalaman = toJson($('#form-pengalaman').serializeArray());
-        let formRujukan = toJson($('#form-rujukan').serializeArray());
-        let formBahasa = toJson($('#form-bahasa').serializeArray());
-        let formKemampuan = toJson($('#form-kemampuan').serializeArray());
+        let formCustomer = serialize($('#form-customer'), 6); 
+        let formSocialmedia = serialize($('#form-socialmedia'), 2);
+        let formEdukasi = serialize($('#form-edukasi'), 5);
+        let formPenghargaan = serialize($('#form-penghargaan'), 4);
+        let formPengalaman = serialize($('#form-pengalaman'), 5);
+        let formRujukan = serialize($('#form-rujukan'), 4);
+        let formBahasa = serialize($('#form-bahasa'), 2);
+        let formKemampuan = serialize($('#form-kemampuan'), 1);
 
         let datas = {
             'code': uniqueCode,
             'customer': {
-                //customer identity
-                //'photo': formCustomer[0]["photo"],
-                'name': formCustomer[0]["name"],
-                'email': formCustomer[1]["email"],
-                'noHp': formCustomer[2]["noHp"],
-                'portFolio': formCustomer[3]["portFolio"],
-                'job': formCustomer[4]["job"],
-                'deskripsi': formCustomer[5]["deskripsi"],
+                ...formCustomer[0],
 
                 //component value
                 'socialmedia':formSocialmedia,
