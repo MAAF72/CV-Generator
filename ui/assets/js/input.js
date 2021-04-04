@@ -255,7 +255,7 @@ $(function() {
     //get value
     $(document).on('click', '#btn-choose-template', function() {
         // Ambil selector dari semua form
-        let uniqueCode = "ABCDEFG";
+        let uniqueCode = "ABCDEFG"; //It's random or something?
         let formCustomer = serialize($('#form-customer'), 6); 
         let formSocialmedia = serialize($('#form-socialmedia'), 2);
         let formEdukasi = serialize($('#form-edukasi'), 5);
@@ -281,6 +281,9 @@ $(function() {
             },
             'template':{}
         }
+
+        let pp = (function() { return document.getElementById("photo").files; })(); //this for save image to variable pp
+        console.log(pp) //lets try it
 
         console.log(datas);
 
