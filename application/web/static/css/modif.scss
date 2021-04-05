@@ -1,0 +1,96 @@
+//sass ui\assets\css\modif.scss ui\assets\css\modif.css
+
+//Color State
+$primary:#2196F3;
+$secondary:#F4F4FE;
+$stroke:#C5C5D2;
+$white:#FFFFFF;
+$black:#0B0720;
+$warning:#F32160;
+
+//font color
+.fnBlack{
+    color: $black;
+}
+
+.fnWhite{
+    color: $white;
+}
+
+
+//font size
+h1{
+    font-size: 96px;
+    line-height: 112px;
+
+}
+
+h2{
+    font-size: 60px;
+    line-height: 70px;
+}
+
+h3{
+    font-size: 48px;
+    line-height: 56px;
+}
+
+h4{
+    font-size: 34px;
+    line-height: 40px;
+}
+
+h5{
+    font-size: 24px;
+    line-height: 28px;
+}
+
+//Component
+body {
+    background-color: $secondary;
+}
+
+.cv {
+    height: 556px;
+    background-color: $stroke;
+    margin: 16px;
+}
+
+.navbar {
+    width: 1076px;
+    height: 240px;
+    background-color: $white;
+    margin: 32px;
+    box-shadow: 0px 4px 54px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+}
+
+.breadcrum {
+    height: 158px;
+    background-color: $secondary;
+}
+
+.div-container{
+    background:$white;
+    border: 1px solid $stroke;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 54px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    padding: 20px;
+    margin: 12px;
+}
+
+.div-content-row{
+    display: flex;
+    flex-direction: row;
+    flex-grow: 0;
+    padding: 8px;
+}
+
+.btn-light{
+    border: 1px solid $primary;
+}
+
+.btn-primary{
+    box-shadow: 0px 4px 16px rgba(33, 150, 243, 0.35);
+}
