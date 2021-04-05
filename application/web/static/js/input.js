@@ -37,9 +37,9 @@ $(function() {
         const html = `
         <div id="content-socialmedia">
             <div class="div-content-row">
-                <input type="text" class="form-control" id="label" name="label" value=${label} aria-describedby="label" placeholder="Social Media">
+                <input type="text" class="form-control" id="label" name="label" value="${name}" aria-describedby="label" placeholder="Social Media">
                 <div style="width: 16px;"></div>
-                <input type="text" class="form-control" id="link" name="link" value=${link} aria-describedby="link" placeholder="Link">
+                <input type="text" class="form-control" id="link" name="link" value="${link}" aria-describedby="link" placeholder="Link">
             </div>
             <div class="row justify-content-end">
                 <button type="button" id="delete-socialmedia" class="btn btn-outline-danger justify-content-end"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
@@ -203,32 +203,8 @@ $(function() {
     /* End : Add More Button */
 
     /* Start : Delete Button */
-    function delete_socialmedia() {
-        $('#content-socialmedia').remove()
-    }
-
-    function delete_edukasi() {
-        $('#content-edukasi').remove()
-    }
-
-    function delete_penghargaan() {
-        $('#content-penghargaan').remove()
-    }
-
-    function delete_kemampuan() {
-        $('#content-kemampuan').remove()
-    }
-
-    function delete_pengalaman() {
-        $('#content-pengalaman').remove()
-    }
-
-    function delete_rujukan() {
-        $('#content-rujukan').remove()
-    }
-
-    function delete_bahasa() {
-        $('#content-bahasa').remove()
+    function delete_form_data(elem) {
+        $(elem).parent().parent().remove()
     }
     /* End : Delete Button */
 
@@ -243,13 +219,41 @@ $(function() {
     /* End : Add More Button Handler */
 
     /* Start : Delete Button Handler */
-    $('#delete-socialmedia').click(() => delete_socialmedia())
+    $(document).on("click", `[id*="delete-"]`, function() {
+        delete_form_data(this)
+    })
+    /*
+    $(document).on("click", "#delete-socialmedia", function() {
+        delete_form_data(this)
+    })
+    $(document).on("click", "#delete-edukasi", function() {
+        delete_form_data(this)
+    })
+    $(document).on("click", "#delete-penghargaan", function() {
+        delete_form_data(this)
+    })
+    $(document).on("click", "#delete-kemampuan", function() {
+        delete_form_data(this)
+    })
+    $(document).on("click", "#delete-pengalaman", function() {
+        delete_form_data(this)
+    })
+    $(document).on("click", "#delete-rujukan", function() {
+        delete_form_data(this)
+    })
+    $(document).on("click", "#delete-bahasa", function() {
+        delete_form_data(this)
+    })
+    */
+    
+    /*
     $('#delete-edukasi').click(() => delete_edukasi())
     $('#delete-penghargaan').click(() => delete_penghargaan())
     $('#delete-kemampuan').click(() => delete_kemampuan())
     $('#delete-pengalaman').click(() => delete_pengalaman())
     $('#delete-rujukan').click(() => delete_rujukan())
     $('#delete-bahasa').click(() => delete_bahasa())
+    */
     /* End : Delete Button Handler */
     
 
