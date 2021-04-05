@@ -1,73 +1,58 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-<title>Landing page</title>
-</head>
-
-<!-- Bootstrap CDN-->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-<!-- import custome css-->
-<link href="assets/css/modif.css" rel="stylesheet">
-
-<body>
-    
-    <!--Content-->
-    <div class="container">
-        <div class="row">
-            
-            <div class="col-10">
-
-                <!--Nav bar favicon-->
-                <div class="row">
-                    <div class="d-inline p-2 text-center text-lg-start">
-                        <h4>CV-Generator</h4>
+    <head>
+        <title>Landing page</title>
+    </head>
+    <!-- Bootstrap CDN-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- import custome css-->
+    <link href="{{ url_for('static', filename='css/modif.css') }}" rel="stylesheet">
+    <body>
+        <!--Content-->
+        <div class="container">
+            <div class="row">
+                <div class="col-10">
+                    <!--Nav bar favicon-->
+                    <div class="row">
+                        <div class="d-inline p-2 text-center text-lg-start">
+                            <h4>CV-Generator</h4>
+                        </div>
+                    </div>
+                    <h1>
+                        Make your CV easily just input and finish, totaly FREE
+                    </h1>
+                    <p>
+                        Only input your data, choose template, a single wink and voila download yourcv.pdf
+                    </p>
+                    <!-- Action -->
+                    <div class="row">
+                        <div class="col-5 div-container">
+                            <h5>Create CV</h5>
+                            <p>create your cv easily and quickly, no need to design.</p>
+                            <button type="button" class="btn btn-primary mb-2">CREATE MY CV</button>
+                        </div>
+                        <div class="col-5 div-container">
+                            <h5>Edit My Old CV</h5>
+                            <p>unique code obtained before you download your old cv.</p>
+                            <form class="form-inline">
+                                <div class="form-group mx-sm-3 mb-2">
+                                    <label for="input-unique-code" class="sr-only">unique code</label>
+                                    <input type="text" class="form-control" id="input-unique-code" placeholder="unique code">
+                                </div>
+                                <button type="submit" class="btn btn-light mb-2">Edit</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
-
-                <h1>
-                    Make your CV easily just input and finish, totaly FREE
-                </h1>
-                <p>
-                    Only input your data, choose template, a single wink and voila download yourcv.pdf
-                </p>
-            
-                <!-- Action -->
-                <div class="row">
-                    <div class="col-5 div-container">
-                        <h5>Create CV</h5>
-                        <p>create your cv easily and quickly, no need to design.</p>
-                        <button type="button" class="btn btn-primary mb-2">CREATE MY CV</button>
-                    </div>
-                    
-                    <div class="col-5 div-container">
-                        <h5>Edit My Old CV</h5>
-                        <p>unique code obtained before you download your old cv.</p>
-                        
-                        <form class="form-inline">
-                            <div class="form-group mx-sm-3 mb-2">
-                                <label for="input-unique-code" class="sr-only">unique code</label>
-                                <input type="text" class="form-control" id="input-unique-code" placeholder="unique code">
-                            </div>
-                            <button type="submit" class="btn btn-light mb-2">Edit</button>
-                        </form>
-
-                    </div>
-                </div>
-            
             </div>
         </div>
-    </div>
-
-    <footer class="text-center text-lg-start">
-        <div class="text-center p-3">
-            <p>1301180072 - 1301180154 - 1301180023 - 1301184059</p>
-        </div>
-    </footer>
-
-</body>
+        <footer class="text-center text-lg-start">
+            <div class="text-center p-3">
+                <p>1301180072 - 1301180154 - 1301180023 - 1301184059</p>
+            </div>
+        </footer>
+    </body>
 </html>

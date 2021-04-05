@@ -28,8 +28,12 @@ def get(unique_code):
     return 'INVALID'
 
 @app.route('/save/<unique_code>', methods=['POST'])
-def save(unique_code):
+def save(unique_code=None):
     if request.method == 'POST':
+        if unique_code == None:
+            print('Buat baru')
+        else:
+            print('Update')
         result = request.form
         print(result)
     return 'OK'

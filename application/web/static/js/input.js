@@ -22,6 +22,17 @@ $(function() {
         return res
     }
 
+    function getBase64(file, cb) {
+        var reader = new FileReader()
+        reader.readAsDataURL(file)
+        reader.onload = function () {
+            cb(reader.result)
+        }
+        reader.onerror = function (error) {
+            console.log('Error: ', error)
+        }
+     }
+
     //content-socialmedia
     $(document).on('click', '#add-socialmedia', function() {
         var html = `<div id="content-socialmedia">
@@ -250,11 +261,7 @@ $(function() {
         });
     });
 
-
-
-    //get value
-    $(document).on('click', '#btn-choose-template', function() {
-        // Ambil selector dari semua form
+    function send(photo) {
         let formCustomer = serialize($('#form-customer'), 6); 
         let formSocialmedia = serialize($('#form-socialmedia'), 2);
         let formEdukasi = serialize($('#form-edukasi'), 5);
@@ -267,7 +274,7 @@ $(function() {
         let datas = {
             'customer': {
                 ...formCustomer[0],
-
+                'photo': photo,
                 //component value
                 'socialmedia':formSocialmedia,
                 'edukasi':formEdukasi,
@@ -280,12 +287,19 @@ $(function() {
             'template':{}
         }
 
-        $.post('/create', datas)
+        $.post('/save', datas)
         .done((res) => console.log('Sukses' + res))
         .fail((err) => console.log('Gagal' + err))
 
         console.log(datas);
+    }
 
+
+    //get value
+    $(document).on('click', '#btn-choose-template', function() {
+        // Ambil selector dari semua form
+        let photo = $('#photo')[0].files[0]
+        getBase64(photo, send)
     });
 });
 
