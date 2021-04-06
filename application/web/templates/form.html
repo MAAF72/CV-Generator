@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{{ title }}</title>
+    </head>
+    <!-- Bootstrap CDN-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- import custome css-->
+    <link href="{{ url_for('static', filename='css/modif.css') }}" rel="stylesheet">
+    <body>
+        <!-- navbar -->
+        <div class="mx-auto navbar fixed-bottom" id="navbar-div">
+            <div class="container">
+                <div class="row" style="width: 100%">
+                    <div class="col-6">
+                        <h5>Ready for choose Template?</h5>
+                        <p>Lorem ipsum dolor sit amet, consectur adipiscing elit.</p>
+                        <button type="button" class="btn btn-light text-uppercase font-weight-bolder" id=btn-back-homepage>Back</button>
+                        <button type="button" id="btn-choose-template" class="btn btn-primary text-uppercase font-weight-bolder">Choose Template</button>
+                    </div>
+                    <div class="col-6">
+                        <div class="breadcrum mx-auto"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Content-->
+        <div class="container">
+            <!--content-->
+            <div class="row">
+                <!--Content Kanan-->
+                <div class="col-6">
+                    <div class="col div-container">
+                        <h5>Identity</h5>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        <form id="form-customer">
+                            <div class="form-group">Picture
+                                <input type="file" name="photo" id="photo" class="form-control-file" accept="image/*">
+                            </div>
+                            <div class="div-content-row">
+                                <input type="text" class="form-control" id="nama" name="nama" aria-describedby="fullname" placeholder="Your Full Name">
+                                <div style="width: 16px;"></div>
+                                <input type="text" class="form-control" id="email" name="email" aria-describedby="Email" placeholder="Email">
+                            </div>
+                            <div class="div-content-row">
+                                <input type="text" class="form-control" id="no_hp" name="no_hp" aria-describedby="Phone" placeholder="Phone">
+                                <div style="width: 16px;"></div>
+                                <input type="text" class="form-control" id="portFolio" name="portFolio" aria-describedby="portFolio" placeholder="portfolio">
+                            </div>
+                            <div class="div-content-row">
+                                <input type="text" class="form-control" id="job" name="job" aria-describedby="job" placeholder="Job">
+                            </div>
+                            <div class="div-content-row">
+                                <textarea class="form-control" id="deskripsi" name="deskripsi" rows="3" placeholder="Your responsibilty"></textarea>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col div-container">
+                        <h5>Social Media</h5>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        <form id="form-socialmedia">
+                            <!-- Let the javascript do the magics -->
+                        </form>
+
+                        <div class="row justify-content-center">
+                            <button type="button" id="add-socialmedia" class="btn btn-outline-primary">Add more</button>
+                        </div>
+                    </div>
+                    <div class="col div-container">
+                        <h5>Educate</h5>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        <form id="form-edukasi">
+                            <!-- Let the javascript do the magics -->
+                        </form>
+                        <div class="row justify-content-center">
+                            <button type="button" id="add-edukasi" class="btn btn-outline-primary">Add more</button>
+                        </div>
+                    </div>
+                    <div class="col div-container">
+                        <h5>Penghargaan</h5>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        <form id="form-penghargaan">
+                            <!-- Let the javascript do the magics -->
+                        </form>
+                        <div class="row justify-content-center">
+                            <button type="button" id="add-penghargaan" class="btn btn-outline-primary">Add more</button>
+                        </div>
+                    </div>
+                </div>
+                <!--Content kiri-->
+                <div class="col-6">
+                    <div class="col div-container">
+                        <h5>Pengalaman</h5>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        <form id="form-pengalaman">
+                            <!-- Let the javascript do the magics -->
+                        </form>
+                        <div class="row justify-content-center">
+                            <button type="button" id="add-pengalaman" class="btn btn-outline-primary">Add more</button>
+                        </div>
+                    </div>
+                    <div class="col div-container">
+                        <h5>Rujukan</h5>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        <form id="form-rujukan">
+                            <!-- Let the javascript do the magics -->
+                        </form>
+                        <div class="row justify-content-center">
+                            <button type="button" class="btn btn-outline-primary" id="add-rujukan">Add more</button>
+                        </div>
+                    </div>
+                    <div class="col div-container">
+                        <h5>Bahasa</h5>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        <form id="form-bahasa">
+                            <!-- Let the javascript do the magics -->
+                        </form>
+                        <div class="row justify-content-center">
+                            <div class="row justify-content-center">
+                                <button type="button" id="add-bahasa" class="btn btn-outline-primary">Add more</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col div-container">
+                        <h5>Kemampuan</h5>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        <form id="form-kemampuan">
+                            <!-- Let the javascript do the magics -->
+                        </form>
+                        <div class="row justify-content-center">
+                            <button type="button" id="add-kemampuan" class="btn btn-outline-primary">Add more</button>
+                        </div>
+                    </div>
+                    <!--
+                        <div class="col div-container">
+                            <h5>Skills</h5>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                            <form id="form-skills">
+                                <div class="div-content-row">
+                                    <input type="text" class="form-control" name="name" aria-describedby="fullname" placeholder="Skills">
+                                </div>
+                                <div class="row justify-content-end">
+                                    <button type="button" class="btn btn-outline-danger justify-content-end">Delete This Skills</button>
+                                </div>
+                                <hr>
+                            </form>
+                            <div class="row justify-content-center">
+                                <button type="button" id="add-skills" class="btn btn-outline-primary">Add more</button>
+                            </div>
+                        </div>
+                        -->
+                </div>
+            </div>
+        </div>
+        <div style="height: 300px;"></div>
+        <!--script form-->
+        <script src="{{ url_for('static', filename='js/form.js') }}"></script>
+        <!--additional script-->
+        {% for e in js %}<script src="{{ url_for('static', filename='js/' + e) }}"></script>{% endfor %}
+    </body>
+</html>
