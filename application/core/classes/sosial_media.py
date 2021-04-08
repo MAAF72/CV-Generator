@@ -1,7 +1,7 @@
 class SosialMedia:
-    def __init__(self):
-        self.nama = None
-        self.link = None
+    def __init__(self, obj={}):
+        self.set_nama(obj.get('nama', None))
+        self.set_link(obj.get('link', None))
 
     def set_nama(self, nama):
         self.nama = nama

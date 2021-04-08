@@ -15,10 +15,12 @@ from classes.kemampuan import Kemampuan
 from classes.rujukan import Rujukan
 from classes.template import Template
 
+from pathlib import Path
+
 import json
-import jsonpickle
 import jinja2
 
+abs_path = Path(__file__).parent.absolute()
 
 cred = credentials.Certificate('cv-generator-e29dd-firebase-adminsdk-zvelg-ae5fe10a7a.json')
 initialize_app(cred, {
@@ -40,14 +42,14 @@ def create(ref, data):
 
 def update(ref, unique_code, data):
     try:
-        cv = ref.child(unique_code)
+        cv = get(ref, unique_code)
         cv.update(data)
     except FirebaseError as e:
         print('Error when updating cv database', e)
 
 def delete(ref, unique_code):
     try:
-        cv = ref.child(unique_code)
+        cv = get(ref, unique_code)
         cv.delete()
     except FirebaseError as e:
         print('Error when deleting cv database', e)
@@ -55,16 +57,17 @@ def delete(ref, unique_code):
 
 def generate(ref, unique_code):
     try:
-        cv, py_cv = get(ref, unique_code)
+        cv = get(ref, unique_code)
+        py_cv = CV(cv.get())
         
-        jinja_environment = jinja2.Environment(loader=jinja2.FileSystemLoader('./'))
+        jinja_environment = jinja2.Environment(loader=jinja2.FileSystemLoader(f'templates/{py_cv.template.nama}'))
         
 
         with open(f'temp/{unique_code}.html', 'w+') as jinja_output:
             jinja_output.write(jinja_environment.get_template(py_cv.template.file).render(data=py_cv.customer))
             
         if generate_pdf(unique_code):
-            file_path = f'/home/altair/Programming/CV Generator/CLASS/temp/{unique_code}.pdf'
+            file_path = f'temp/{unique_code}.pdf'
             
             bucket = storage.bucket()
             blob = bucket.blob(f'cv/{unique_code}.pdf')
@@ -80,11 +83,7 @@ def generate(ref, unique_code):
         print('Error when generating cv', e)
 
 def get(ref, unique_code):
-    cv = ref.child(unique_code)
-    str_cv = json.dumps(cv.get())
-    py_cv = jsonpickle.decode(str_cv.replace('py_class', 'py/object'), keys=True)
-    return cv, py_cv
-
+    return ref.child(unique_code)
 
 def create_dummy(ref):
     sd = Edukasi()
@@ -163,7 +162,7 @@ def create_dummy(ref):
     fatih.add_kemampuan(ngoding)
 
     formal = Template()
-    formal.set_nama('Formal')
+    formal.set_nama('formal')
     formal.set_file('template.html')
     formal.set_deskripsi('Ini template buat ngelamar doi bray')
 
@@ -171,12 +170,7 @@ def create_dummy(ref):
     py_cv.set_customer(fatih)
     py_cv.set_template(formal)
 
-    # Bakal error kalo ada imbuhan py/object, gara2 ada karakter / kykny, makanya kita ubah dulu itu ke karakter yang lain
-    json_version = json.loads(
-        jsonpickle.encode(py_cv, keys=True, indent=4).replace('py/object', 'py_class')
-    )
-
-    unique_code = create(ref, json_version)
+    unique_code = create(ref, json.loads(py_cv.to_json()))
 
     if unique_code:
         print('Berhasil membuat cv data', unique_code)
@@ -193,7 +187,7 @@ async def generate_pdf(unique_code):
             'preferCSSPageSize': True,
             'deviceScaleFactor': 2
         })
-        await page.goto(f'file:///home/altair/Programming/CV%20Generator/CLASS/temp/{unique_code}.html')
+        await page.goto(f'file://{abs_path}/temp/{unique_code}.html')
         await page.waitFor(2000)
 
         await page.pdf({

@@ -1,10 +1,10 @@
 class Edukasi:
-    def __init__(self):
-        self.jenjang = None
-        self.instansi = None
-        self.tahun_mulai = None
-        self.tahun_selesai = None
-        self.deskripsi = None
+    def __init__(self, obj={}):
+        self.set_jenjang(obj.get('jenjang', None))
+        self.set_instansi(obj.get('instansi', None))
+        self.set_tahun_mulai(obj.get('tahun_mulai', None))
+        self.set_tahun_selesai(obj.get('tahun_selesai', None))
+        self.set_deskripsi(obj.get('deskripsi', None))
         
     def set_jenjang(self, jenjang):
         self.jenjang = jenjang

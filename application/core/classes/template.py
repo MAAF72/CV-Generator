@@ -1,9 +1,9 @@
 class Template:
-    def __init__(self):
-        self.nama = None
-        self.deskripsi = None
-        self.file = None
-
+    def __init__(self, obj={}):
+        self.set_nama(obj.get('nama', None))
+        self.set_deskripsi(obj.get('deskripsi', None))
+        self.set_file(obj.get('file', None))
+            
     def set_nama(self, nama):
         self.nama = nama
 

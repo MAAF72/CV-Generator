@@ -1,0 +1,4 @@
+jinja2
+firebase_admin
+pyppeteer
+syncer

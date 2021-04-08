@@ -1,11 +1,19 @@
+from .pengalaman import Pengalaman
+from .edukasi import Edukasi
+from .penghargaan import Penghargaan
+from .kemampuan import Kemampuan
+from .sosial_media import SosialMedia
+from .bahasa import Bahasa
+from .rujukan import Rujukan
+
 class Customer:
-    def __init__(self):
-        self.nama = None
-        self.job = None
-        self.deskripsi = None
-        self.foto = None
-        self.email = None
-        self.no_hp = None
+    def __init__(self, obj={}):
+        self.set_nama(obj.get('nama', None))
+        self.set_job(obj.get('job', None))
+        self.set_deskripsi(obj.get('deksripsi', None))
+        self.set_foto(obj.get('foto', None))
+        self.set_email(obj.get('email', None))
+        self.set_no_hp(obj.get('no_hp', None))
 
         self.list_pengalaman = []
         self.list_edukasi = []
@@ -14,6 +22,27 @@ class Customer:
         self.list_sosial_media = []
         self.list_bahasa = []
         self.list_rujukan = []
+    
+        for p in obj.get('list_pengalaman', []):
+            self.add_pengalaman(Pengalaman(p))
+        
+        for e in obj.get('list_edukasi', []):
+            self.add_edukasi(Edukasi(e))
+            
+        for p in obj.get('list_penghargaan', []):
+            self.add_penghargaan(Penghargaan(p))
+            
+        for k in obj.get('list_kemampuan', []):
+            self.add_kemampuan(Kemampuan(k))
+            
+        for sm in obj.get('list_sosial_media', []):
+            self.add_sosial_media(SosialMedia(sm))
+            
+        for b in obj.get('list_bahasa', []):
+            self.add_bahasa(Bahasa(b))
+            
+        for r in obj.get('list_rujukan', []):
+            self.add_rujukan(Rujukan(r))
 
     def set_nama(self, nama):
         self.nama = nama
