@@ -1,6 +1,16 @@
 from flask import Flask, render_template, request
 app = Flask(__name__)
 
+@app.route('/home')
+def home():
+    ctx = {
+        'title': 'Homepage CV-Generator',
+        'js': [
+            'input.js'
+        ]
+    }
+    return render_template('landingpage.html', **ctx)
+
 @app.route('/input')
 def input():
     ctx = {
@@ -10,6 +20,26 @@ def input():
         ]
     }
     return render_template('form.html', **ctx)
+
+@app.route('/choosetemplate')
+def choosetemplate():
+    ctx = {
+        'title': 'Choose Template You Like',
+        'js': [
+            'input.js'
+        ]
+    }
+    return render_template('choosetemplate.html', **ctx)
+
+@app.route('/download')
+def download():
+    ctx = {
+        'title': 'Finish | Download CV',
+        'js': [
+            'input.js'
+        ]
+    }
+    return render_template('download.html', **ctx)
 
 @app.route('/edit/<unique_code>')
 def edit(unique_code):

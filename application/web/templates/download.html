@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Landing page</title>
+    </head>
+    <!-- Bootstrap CDN-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- import custome css-->
+    <link href="{{ url_for('static', filename='css/modif.css') }}" rel="stylesheet">
+    <link href="/application/web/static/css/modif.css" rel="stylesheet">
+    <body>
+        <!-- navbar -->
+        <div class="mx-auto navbar fixed-bottom" id="navbar-div">
+            <div class="container">
+                <div class="row" style="width: 100%">
+                    <div class="col-6">
+                        <h5>Here you CV</h5>
+                        <p>Please save the unique code to reuse or edit this CV in Future!</p>
+                        <div class="div-content-row">
+                            <input type="text" class="form-control" id="kode-unik" name="kode-unik" aria-describedby="kode-unik" placeholder="kode-unik" value="XXXX-XXXX-XXXX-XXXX">
+
+                            <div style="width: 16px;"></div>
+
+                            <button onclick="copyToClipboard('#kode-unik')" type="button" id="copy-button" class="btn btn-outline-primary">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-files" viewBox="0 0 16 16">
+                                    <path d="M13 0H6a2 2 0 0 0-2 2 2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h7a2 2 0 0 0 2-2 2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm0 13V4a2 2 0 0 0-2-2H5a1 1 0 0 1 1-1h7a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1zM3 4a1 1 0 0 1 1-1h7a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4z"/>
+                                  </svg>
+                            </button>
+                        </div>
+                        <button type="button" class="btn btn-light text-uppercase font-weight-bolder" id=btn-back-homepage>Choose template</button>
+                        <button type="button" id="btn-choose-template" class="btn btn-primary text-uppercase font-weight-bolder">Download My CV</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--CV Preview Template-->
+        <div class="container">
+            <div class="row">
+                <div class="col-12 d-flex justify-content-center">
+                    <div class="cv-preview"></div>
+                </div>
+            </div>
+        </div>
+
+
+        <div style="height: 300px;"></div>
+
+
+        <!--navbar.script-->
+        <script>
+            //copy button
+            function copyToClipboard(element) {
+                $(element).select();
+                document.execCommand("copy");
+            }
+        </script>
+    </body>
+</html>
