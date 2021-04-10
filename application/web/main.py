@@ -36,7 +36,7 @@ def download():
     ctx = {
         'title': 'Finish | Download CV',
         'js': [
-            'input.js'
+            'download.js'
         ]
     }
     return render_template('download.html', **ctx)

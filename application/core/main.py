@@ -30,6 +30,19 @@ initialize_app(cred, {
 
 ref = db.reference('/users')
 
+def enable_cors():
+    bucket = storage.bucket()
+
+    bucket.cors = [
+        {
+            'origin': ['*'],
+            'method': ['GET'],
+            'maxAgeSeconds': 86400
+        }
+    ]
+
+    bucket.update()
+
 def create(ref, data):
     try:
         act = ref.push(data)
@@ -204,5 +217,6 @@ async def generate_pdf(unique_code):
         
     return False
 
-create_dummy(ref)
+enable_cors()
+#create_dummy(ref)
 #get(ref, '-MW_Amrt1vl3s1AaTWfv')

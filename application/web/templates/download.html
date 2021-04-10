@@ -50,6 +50,8 @@
 
 
         <!--navbar.script-->
+        <!--additional script-->
+        {% for e in js %}<script src="{{ url_for('static', filename='js/' + e) }}"></script>{% endfor %}
         <script>
             //copy button
             function copyToClipboard(element) {
