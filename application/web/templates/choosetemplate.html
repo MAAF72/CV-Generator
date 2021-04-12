@@ -19,6 +19,12 @@
         background-color: #C5C5D2;
         margin: 15px 0;
         }
+        .cv-preview {
+            width: 100%;
+            height: auto;
+            margin: 0;
+            padding: 0;
+        }
         .action {
         height: 240px;
         padding: 15px;
@@ -35,21 +41,12 @@
             <div class="row">
                 <div class="col-12">
                     <div class="row">
+                        {% for t in templates %}
+
                         <div class="col-4">
-                            <div class="cv"></div>
+                            <div class="cv"><img class="cv-preview" src="{{ templates[t].preview }}"></div>
                         </div>
-                        <div class="col-4">
-                            <div class="cv"></div>
-                        </div>
-                        <div class="col-4">
-                            <div class="cv"></div>
-                        </div>
-                        <div class="col-4">
-                            <div class="cv"></div>
-                        </div>
-                        <div class="col-4">
-                            <div class="cv"></div>
-                        </div>
+                        {% endfor %}
                     </div>
                 </div>
             </div>
@@ -70,5 +67,7 @@
             </div>
         </div>
         </div>
+        <!--additional script-->
+        {% for e in js %}<script src="{{ url_for('static', filename='js/' + e) }}"></script>{% endfor %}
     </body>
 </html>

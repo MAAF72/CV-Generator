@@ -1,6 +1,25 @@
 from flask import Flask, render_template, request
 app = Flask(__name__)
 
+#ini nanti diambil dari database
+templates_data = {
+    'dummy1' : {
+        'deskripsi' : 'Ini dummy aja',
+        'file' : 'dummy1.hml',
+        'preview' : 'https://www.cv-template.com/img/choose-template/t4-orange.jpg'
+    },
+    'dummy2' : {
+        'deskripsi' : 'Ini dummy lagi',
+        'file' : 'dummy2.html',
+        'preview' : 'https://www.cv-template.com/img/choose-template/t1-gold.jpg'
+    },
+    'formal' : {
+        'deskripsi' : 'ini template buat ngelamar kerja',
+        'file' : 'formal.html',
+        'preview' : 'https://i.pinimg.com/736x/d1/98/ef/d198ef5650f9f7fe12da62b0c32982e5.jpg'
+    }
+}
+
 @app.route('/home')
 def home():
     ctx = {
@@ -21,13 +40,14 @@ def input():
     }
     return render_template('form.html', **ctx)
 
-@app.route('/choosetemplate')
-def choosetemplate():
+@app.route('/choosetemplate/<unique_code>')
+def choosetemplate(unique_code):
     ctx = {
         'title': 'Choose Template You Like',
         'js': [
-            'input.js'
-        ]
+            'choose_template.js'
+        ],
+        'templates': templates_data
     }
     return render_template('choosetemplate.html', **ctx)
 
@@ -146,7 +166,7 @@ def get(unique_code):
 
     return sample
 
-@app.route('/save/', defaults={ 'unique_code': None }, methods=['POST'])
+@app.route('/save', defaults={ 'unique_code': None }, methods=['POST'])
 @app.route('/save/<unique_code>', methods=['POST'])
 def save(unique_code):
     if request.method == 'POST':

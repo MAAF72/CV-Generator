@@ -1,6 +1,6 @@
 $(function() {
-    var path_name = window.location.pathname.split('/')
-    var unique_code = path_name[2]
+    const path_name = window.location.pathname.split('/')
+    const unique_code = path_name[2]
 
     console.log(`Unique Code = ${unique_code}`)
     $.get(`/get/${unique_code}`)
@@ -49,8 +49,6 @@ $(function() {
             for (let i = 0; i < list_sosial_media.length; i++) {
                 add_socialmedia(list_sosial_media[i])
             }
-            //parse json
-            //edit customer identity form based on json data, also load the photo
-            //add form content based on json data
+            //load the photo
         })
 })

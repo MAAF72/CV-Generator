@@ -226,6 +226,13 @@ function delete_form_data(elem) {
 
 /* Start : Button Handler Using JQuery */
 $(function() {
+    const path_name = window.location.pathname.split('/')
+    let unique_code = null
+
+    if (path_name.length >= 3) {
+        unique_code = path_name[2]
+    }
+
     $('#add-socialmedia').click(() => add_socialmedia({}))
     $('#add-edukasi').click(() => add_edukasi({}))
     $('#add-penghargaan').click(() => add_penghargaan({}))
@@ -254,7 +261,7 @@ $(function() {
                 let datas = {
                     'customer': {
                         ...formCustomer[0],
-                        'photo': photo,
+                        'photo': photo_base64,
                         'socialmedia': formSocialmedia,
                         'edukasi': formEdukasi,
                         'penghargaan': formPenghargaan,
@@ -266,16 +273,24 @@ $(function() {
                     'template': {}
                 }
 
-                $.post('/save', datas)
+                let save_url = '/save'
+                if (unique_code != null) {
+                    save_url += `/${unique_code}`
+                }
+                console.log(save_url)
+                console.log(datas)
+                $.post(save_url, datas)
                     .done((res) => {
+                        if (unique_code == null) {
+                            unique_code = res
+                        }
                         console.log('Sukses' + res)
-                        console.log('Redirect ke choose/res')
+                        window.location.replace(`/choosetemplate/${unique_code}`)
                     })
                     .fail((err) => {
-                        console.log('Gagal' + err)
+                        console.log('Gagal')
+                        console.log(err)
                     })
-
-                console.log(datas)
             })
     })
 })
