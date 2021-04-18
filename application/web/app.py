@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
 app = Flask(__name__)
+app.config.from_pyfile('flask.cfg', silent=True)
 
 #ini nanti diambil dari database
 templates_data = {
@@ -178,4 +179,7 @@ def save(unique_code):
         print(result)
     return 'OK'
 
-app.run()
+if __name__ == '__main__':
+    app.jinja_env.auto_reload = True
+    app.config['TEMPLATES_AUTO_RELOAD'] = True
+    app.run()
