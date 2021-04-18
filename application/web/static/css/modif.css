@@ -90,10 +90,13 @@ body {
 /*choosetemplate div select*/
 .radio {
   cursor: pointer;
+  border: 0px solid #FFFFFF;
+  transition: border 0.2s;
 }
 
 .radio.selected {
-  border-color: blue;
+  border-color: #2196F3;
+  border: 2px solid #2196F3;
 }
 
 /*# sourceMappingURL=modif.css.map */

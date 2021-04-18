@@ -105,8 +105,11 @@ body {
 /*choosetemplate div select*/
 .radio{
     cursor:pointer;
+    border: 0px solid $white;
+    transition: border 0.2s;
 }
 
 .radio.selected{
-    border-color: blue;
+    border-color: $primary;
+    border: 2px solid $primary;
 }

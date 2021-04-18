@@ -41,21 +41,10 @@
             <div class="row">
                 <div class="col-12">
                     <div class="row">
-                        
-                        <!--sample-->
-                        <div class="radio-group">
-                            <div class='radio' data-value="One"></div>1
-                            <div class='radio' data-value="Two"></div>2
-                            <div class='radio' data-value="Three"></div>3
-                            <br/>
-                        </div>
-                        
-                        
-                        <div class="col-4">
-                            {% for t in templates %}
-                            <div class="cv radio" data-value="template-code"><img class="cv-preview" src="{{ templates[t].preview }}"></div>
-                            {% endfor %}
-                        </div>
+
+                        {% for t in templates %}
+                        <div class="radio col-4" data-value="template-code-{{t}}"><img class="cv-preview" src="{{ templates[t].preview }}"></div>
+                        {% endfor %}
 
 
                     </div>
@@ -69,7 +58,7 @@
                         <h5>Your CV ready to Download</h5>
                         <p>Lorem ipsum dolor sit amet, consectur adipiscing elit.</p>
                         <button type="button" class="btn btn-light text-uppercase font-weight-bolder">Back to input my data</button>
-                        <button type="button" class="btn btn-primary text-uppercase font-weight-bolder">Download to my CV</button>
+                        <button type="button" class="btn btn-primary text-uppercase font-weight-bolder" id="download-cv">Download to my CV</button>
                     </div>
                 </div>
                 <div class="col-6 m-auto">
@@ -81,16 +70,5 @@
         <!--additional script-->
         {% for e in js %}<script src="{{ url_for('static', filename='js/' + e) }}"></script>{% endfor %}
 
-
-        <script>
-            $('.col-4 .radio').click(function(){
-            $(this).parent().find('.radio').removeClass('selected');
-            $(this).addClass('selected');
-            var val = $(this).attr('data-value');
-            //alert(val);
-            //$(this).parent().find('input').val(val);
-            console.log(val);
-        });
-        </script>
     </body>
 </html>
