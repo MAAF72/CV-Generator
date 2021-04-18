@@ -101,3 +101,12 @@ body {
 .btn-primary{
     box-shadow: 0px 4px 16px rgba(33, 150, 243, 0.35);
 }
+
+/*choosetemplate div select*/
+.radio{
+    cursor:pointer;
+}
+
+.radio.selected{
+    border-color: blue;
+}

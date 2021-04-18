@@ -41,12 +41,23 @@
             <div class="row">
                 <div class="col-12">
                     <div class="row">
-                        {% for t in templates %}
-
-                        <div class="col-4">
-                            <div class="cv"><img class="cv-preview" src="{{ templates[t].preview }}"></div>
+                        
+                        <!--sample-->
+                        <div class="radio-group">
+                            <div class='radio' data-value="One"></div>1
+                            <div class='radio' data-value="Two"></div>2
+                            <div class='radio' data-value="Three"></div>3
+                            <br/>
                         </div>
-                        {% endfor %}
+                        
+                        
+                        <div class="col-4">
+                            {% for t in templates %}
+                            <div class="cv radio" data-value="template-code"><img class="cv-preview" src="{{ templates[t].preview }}"></div>
+                            {% endfor %}
+                        </div>
+
+
                     </div>
                 </div>
             </div>
@@ -69,5 +80,17 @@
         </div>
         <!--additional script-->
         {% for e in js %}<script src="{{ url_for('static', filename='js/' + e) }}"></script>{% endfor %}
+
+
+        <script>
+            $('.col-4 .radio').click(function(){
+            $(this).parent().find('.radio').removeClass('selected');
+            $(this).addClass('selected');
+            var val = $(this).attr('data-value');
+            //alert(val);
+            //$(this).parent().find('input').val(val);
+            console.log(val);
+        });
+        </script>
     </body>
 </html>
