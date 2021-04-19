@@ -245,7 +245,20 @@ $(function() {
         delete_form_data(this)
     })
 
+    $(document).on("change", `[id*="tahun_mulai"]`, function() {
+        // get value of this(tahun_mulai) with format year-month-day
+        var month = this.getUTCMonth() + 1; //months from 1-12
+        var day = this.getUTCDate();
+        var year = this.getUTCFullYear();
+
+        newdate = year + "-" + month + "-" + day;
+
+        const tahun_selesai = $(this).siblings('#tahun_selesai')[0]
+        $(tahun_selesai).attr('min', newdate)
+    })
+
     $('#btn-choose-template').click(() => {
+        //tampilkan loader
         let photo = $('#photo')[0].files[0]
         readFileAsDataURL(photo)
             .then((photo_base64) => {
@@ -285,11 +298,13 @@ $(function() {
                             unique_code = res
                         }
                         console.log('Sukses' + res)
+                        //hilangkan loader
                         window.location.replace(`/choosetemplate/${unique_code}`)
                     })
                     .fail((err) => {
                         console.log('Gagal')
                         console.log(err)
+                        //tampilkan pesan error dengan loader
                     })
             })
     })
