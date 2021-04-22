@@ -28,7 +28,7 @@ initialize_app(cred, {
     'storageBucket': 'cv-generator-e29dd.appspot.com'
 })
 
-ref = db.reference('/users')
+ref = db.reference('/cv')
 
 def enable_cors():
     bucket = storage.bucket()

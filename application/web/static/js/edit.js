@@ -3,10 +3,10 @@ $(function() {
     const unique_code = path_name[2]
 
     console.log(`Unique Code = ${unique_code}`)
-    $.get(`/get/${unique_code}`)
+    $.get(`/get/${unique_code}`, dataType='json')
         .done((res) => {
-            const obj = JSON.parse(res)
-            const customer = obj.customer
+            console.log(res)
+            const customer = res.customer
 
             $('#form-customer #nama').val(customer.nama)
             //$('#form-customer #email').val(customer.email)
@@ -50,5 +50,9 @@ $(function() {
                 add_socialmedia(list_sosial_media[i])
             }
             //load the photo
+        })
+        .fail((err) => {
+            alert(`There is no CV with code ${unique_code}`)
+            window.location.replace(`/`)
         })
 })

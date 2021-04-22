@@ -40,6 +40,18 @@ async function readFileAsDataURL(file) {
     return result_base64;
 }
 
+function fill_identity({ nama = '', email = '', no_hp = '', portolio = '', job = '', deskripsi = '', photo = ''}) {
+    /*
+    $('#form-customer #nama').val(customer.nama)
+    //$('#form-customer #email').val(customer.email)
+    //$('#form-customer #no_hp').val(customer.no_hp)
+    $('#form-customer #job').val(customer.job)
+    //$('#form-customer #deskripsi').val(customer.deskripsi)
+
+    //nanti pakai destructuring aja, samain aja sama struktur jsonnya
+    */
+}
+
 /* Start : Add More Button */
 function add_socialmedia({ nama = '', link = '' }) {
     const html = `
@@ -172,7 +184,7 @@ function add_rujukan({ nama = '', instansi = '', no_hp = '', email = '' }) {
         </div>
         
         <div class="div-content-row">
-            <input type="text" class="form-control" id="noHp" name="noHp" value="${no_hp}" aria-describedby="Phone" placeholder="Phone">
+            <input type="text" class="form-control" id="no_hp" name="no_hp" value="${no_hp}" aria-describedby="Phone" placeholder="Phone">
             <div style="width: 16px;"></div>
             <input type="text" class="form-control" id="email" name="email" value="${email}" aria-describedby="email" placeholder="email">
         </div>
@@ -227,11 +239,8 @@ function delete_form_data(elem) {
 /* Start : Button Handler Using JQuery */
 $(function() {
     const path_name = window.location.pathname.split('/')
-    let unique_code = null
+    let unique_code = path_name.length >= 3 ? path_name[2] : null
 
-    if (path_name.length >= 3) {
-        unique_code = path_name[2]
-    }
 
     $('#add-socialmedia').click(() => add_socialmedia({}))
     $('#add-edukasi').click(() => add_edukasi({}))
@@ -260,6 +269,7 @@ $(function() {
     $('#btn-choose-template').click(() => {
         //tampilkan loader
         let photo = $('#photo')[0].files[0]
+        console.log(photo)
         readFileAsDataURL(photo)
             .then((photo_base64) => {
                 let formCustomer = serialize($('#form-customer'), 6);
@@ -286,26 +296,29 @@ $(function() {
                     'template': {}
                 }
 
-                let save_url = '/save'
-                if (unique_code != null) {
-                    save_url += `/${unique_code}`
-                }
-                console.log(save_url)
-                console.log(datas)
-                $.post(save_url, datas)
-                    .done((res) => {
-                        if (unique_code == null) {
-                            unique_code = res
+                let save_url = '/save' + (unique_code != null ? `/${unique_code}` : ``)
+
+                $.ajax({
+                    url: save_url,
+                    type: 'POST',
+                    data: JSON.stringify(datas),
+                    contentType: 'application/json',
+                    success: (res) => {
+                        if (res != 'ERROR') {
+                            if (unique_code == null) {
+                                unique_code = res
+                            }
+                            console.log('Sukses, ' + res)
+                            window.location.replace(`/choosetemplate/${unique_code}`)
+                        } else {
+                            alert('Gagal submit data')
                         }
-                        console.log('Sukses' + res)
-                        //hilangkan loader
-                        window.location.replace(`/choosetemplate/${unique_code}`)
-                    })
-                    .fail((err) => {
-                        console.log('Gagal')
+                    },
+                    error: (err) => {
+                        console.log('Ajax Error')
                         console.log(err)
-                        //tampilkan pesan error dengan loader
-                    })
+                    }
+                })
             })
     })
 })

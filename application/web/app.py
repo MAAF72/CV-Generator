@@ -1,25 +1,10 @@
-from flask import Flask, render_template, request
-app = Flask(__name__)
-app.config.from_pyfile('flask.cfg', silent=True)
+from flask import Flask, render_template, request, abort
+from firebase import Firebase
+from blob_converter import convert
+import json
 
-#ini nanti diambil dari database
-templates_data = {
-    'dummy1' : {
-        'deskripsi' : 'Ini dummy aja',
-        'file' : 'dummy1.hml',
-        'preview' : 'https://www.cv-template.com/img/choose-template/t4-orange.jpg'
-    },
-    'dummy2' : {
-        'deskripsi' : 'Ini dummy lagi',
-        'file' : 'dummy2.html',
-        'preview' : 'https://www.cv-template.com/img/choose-template/t1-gold.jpg'
-    },
-    'formal' : {
-        'deskripsi' : 'ini template buat ngelamar kerja',
-        'file' : 'formal.html',
-        'preview' : 'https://i.pinimg.com/736x/d1/98/ef/d198ef5650f9f7fe12da62b0c32982e5.jpg'
-    }
-}
+app = Flask(__name__)
+fb = Firebase()
 
 @app.route('/home')
 def home():
@@ -33,10 +18,11 @@ def home():
 
 @app.route('/input')
 def input():
+    test = True
     ctx = {
         'title': 'Input Data',
         'js': [
-            'input.js'
+            'input_test.js' if test else 'input.js',
         ]
     }
     return render_template('form.html', **ctx)
@@ -48,7 +34,7 @@ def choosetemplate(unique_code):
         'js': [
             'choose_template.js'
         ],
-        'templates': templates_data
+        'templates': fb.read_templates()
     }
     return render_template('choosetemplate.html', **ctx)
 
@@ -64,7 +50,9 @@ def download():
 
 @app.route('/edit/<unique_code>')
 def edit(unique_code):
-    print(unique_code)
+    if fb.read_cv(unique_code) == None:
+      abort(404)
+
     ctx = {
         'title': 'Edit Data',
         'js': [
@@ -75,108 +63,50 @@ def edit(unique_code):
 
 @app.route('/get/<unique_code>')
 def get(unique_code):
+    # get data from database
+    # parse it to string
+    # return it
     print(unique_code)
     '''
     Update formnya make js aja, jadi ini ngereturn data cvnya aja, nah nanti ini dipanggil lewat ajax di form edit
     '''
 
-    sample = '''
-    {
-      "customer" : {
-        "foto" : "https://maaf72.github.io/assets/image/photo.png",
-        "job" : "Pengangguran",
-        "list_bahasa" : [ {
-          "level" : "N1",
-          "nama" : "Bahasa Jepang",
-          "py_class" : "classes.bahasa.Bahasa"
-        } ],
-        "list_edukasi" : [ {
-          "deskripsi" : "Ranking 1 paralel",
-          "instansi" : "SDIT Usamah",
-          "jenjang" : "Sekolah Dasar",
-          "py_class" : "classes.edukasi.Edukasi",
-          "tahun_mulai" : 2006,
-          "tahun_selesai" : 2012
-        }, {
-          "deskripsi" : "Ranking 1 paralel",
-          "instansi" : "SMPIT Avicenna",
-          "py_class" : "classes.edukasi.Edukasi",
-          "tahun_mulai" : 2012,
-          "tahun_selesai" : 2015
-        }, {
-          "deskripsi" : "Wibu nolep sejati",
-          "instansi" : "SMAIT Thariq Bin Ziyad",
-          "py_class" : "classes.edukasi.Edukasi",
-          "tahun_mulai" : 2015,
-          "tahun_selesai" : 2018
-        }, {
-          "deskripsi" : "Kang ngoding",
-          "instansi" : "Telkom University",
-          "py_class" : "classes.edukasi.Edukasi",
-          "tahun_mulai" : 2018,
-          "tahun_selesai" : "Sekarang"
-        } ],
-        "list_kemampuan" : [ {
-          "nama" : "Ngoding",
-          "py_class" : "classes.kemampuan.Kemampuan"
-        } ],
-        "list_pengalaman" : [ {
-          "deskripsi" : "Gagal magang, males nanyain kelanjutan jadwal magang ehe",
-          "instansi" : "Forstok",
-          "nama" : "Junior Software Engineer",
-          "py_class" : "classes.pengalaman.Pengalaman",
-          "tahun_mulai" : 2021,
-          "tahun_selesai" : 2021
-        } ],
-        "list_penghargaan" : [ {
-          "deskripsi" : "Lomba Competitive Programming tingkat Internasional",
-          "instansi" : "ACM",
-          "nama" : "Finalist ACM ICPC Asia Jakarta Regional 2020",
-          "py_class" : "classes.penghargaan.Penghargaan",
-          "tahun" : 2020
-        } ],
-        "list_rujukan" : [ {
-          "email" : "elon@musk.com",
-          "instansi" : "Space Toon",
-          "nama" : "Elon Musk",
-          "no_hp" : "081269696969",
-          "py_class" : "classes.rujukan.Rujukan"
-        } ],
-        "list_sosial_media" : [ {
-          "link" : "https://www.linkedin.com/in/maaf72/",
-          "nama" : "Linkedin",
-          "py_class" : "classes.sosial_media.SosialMedia"
-        }, {
-          "link" : "https://www.instagram.com/maaf72/",
-          "nama" : "Instagram",
-          "py_class" : "classes.sosial_media.SosialMedia"
-        } ],
-        "nama" : "Fatih",
-        "py_class" : "classes.customer.Customer"
-      },
-      "file" : "https://storage.googleapis.com/cv-generator-e29dd.appspot.com/cv/-MX6-FNRedoi1FXCiSS0.png",
-      "py_class" : "classes.cv.CV",
-      "template" : {
-        "deskripsi" : "Ini template buat ngelamar doi bray",
-        "file" : "template.html",
-        "nama" : "Formal",
-        "py_class" : "classes.template.Template"
-      }
-    }
-    '''.strip()
+    data = fb.read_cv(unique_code)
 
-    return sample
+    if data == None:
+      abort(404)
+
+    return data
 
 @app.route('/save', defaults={ 'unique_code': None }, methods=['POST'])
 @app.route('/save/<unique_code>', methods=['POST'])
 def save(unique_code):
+    # get input as string of json,
+    # parse to json,
+    # get and convert base64 image to file,
+    # upload file to storage
+    # change photo field to url of uploaded file
+    # upload json to database
     if request.method == 'POST':
-        if unique_code == None:
-            print('Buat baru')
-        else:
-            print('Update')
-        result = request.form
-        print(result)
+        try:  
+            data = request.json
+            base64_photo, data['customer']['foto'] = data['customer']['foto'], ''
+            if unique_code == None:
+                unique_code = fb.create_cv(data)
+            else:
+                if not fb.update_cv(unique_code, data):
+                  return 'ERROR'
+            print('unique_code', unique_code)
+            file_photo = convert(base64_photo, unique_code)
+
+            fb.update_cv(f'{unique_code}/customer', {
+                'foto': fb.upload_file(file_photo)                
+            })
+
+            return unique_code
+        except Exception as e:
+            print('ini errornya', str(e))
+            return 'ERROR'
     return 'OK'
 
 if __name__ == '__main__':
