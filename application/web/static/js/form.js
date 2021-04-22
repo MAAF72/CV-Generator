@@ -53,7 +53,7 @@ function fill_identity({ nama = '', email = '', no_hp = '', portolio = '', job =
 }
 
 /* Start : Add More Button */
-function add_socialmedia({ nama = '', link = '' }) {
+function add_sosial_media({ nama = '', link = '' }) {
     const html = `
     <div id="content-socialmedia">
         <div class="div-content-row">
@@ -242,7 +242,7 @@ $(function() {
     let unique_code = path_name.length >= 3 ? path_name[2] : null
 
 
-    $('#add-socialmedia').click(() => add_socialmedia({}))
+    $('#add-socialmedia').click(() => add_sosial_media({}))
     $('#add-edukasi').click(() => add_edukasi({}))
     $('#add-penghargaan').click(() => add_penghargaan({}))
     $('#add-kemampuan').click(() => add_kemampuan({}))
@@ -268,10 +268,10 @@ $(function() {
 
     $('#btn-choose-template').click(() => {
         //tampilkan loader
-        let photo = $('#photo')[0].files[0]
-        console.log(photo)
-        readFileAsDataURL(photo)
-            .then((photo_base64) => {
+        let foto = $('#photo')[0].files[0]
+        console.log(foto)
+        readFileAsDataURL(foto)
+            .then((foto_base64) => {
                 let formCustomer = serialize($('#form-customer'), 6);
                 let formSocialmedia = serialize($('#form-socialmedia'), 2);
                 let formEdukasi = serialize($('#form-edukasi'), 5);
@@ -284,16 +284,15 @@ $(function() {
                 let datas = {
                     'customer': {
                         ...formCustomer[0],
-                        'photo': photo_base64,
-                        'socialmedia': formSocialmedia,
-                        'edukasi': formEdukasi,
-                        'penghargaan': formPenghargaan,
-                        'pengalaman': formPengalaman,
-                        'rujukan': formRujukan,
-                        'bahasa': formBahasa,
-                        'kemampuan': formKemampuan,
-                    },
-                    'template': {}
+                        'foto': foto_base64,
+                        'list_sosial_media': formSocialmedia,
+                        'list_edukasi': formEdukasi,
+                        'list_penghargaan': formPenghargaan,
+                        'list_pengalaman': formPengalaman,
+                        'list_rujukan': formRujukan,
+                        'list_bahasa': formBahasa,
+                        'list_kemampuan': formKemampuan,
+                    }
                 }
 
                 let save_url = '/save' + (unique_code != null ? `/${unique_code}` : ``)
