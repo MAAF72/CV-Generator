@@ -1,13 +1,14 @@
 //navbar show when scroll down
-window.onscroll = function(ev) {
-    var x = document.getElementById('navbar-div')
-    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-        //x.style.display = 'default'
-        x.className = 'mx-auto navbar fixed-bottom'
-    } else {
-        //x.style.display = 'none'
-        x.className = 'd-none'
-    }
+window.onscroll = function() {
+  var currentScrollPos = window.pageYOffset;
+
+  // 20 is an arbitrary number here, just to make you think if you need the prevScrollpos variable:
+  if (currentScrollPos < 20) {
+    // I am using 'display' instead of 'top':
+    document.getElementById("navbar-div").className = 'mx-auto navbar fixed-bottom';
+  } else {
+    document.getElementById("navbar-div").className = "d-none";
+  }
 }
 
 function toJson(obj) {
@@ -294,6 +295,8 @@ $(function() {
                         'list_kemampuan': formKemampuan,
                     }
                 }
+
+                console.log(datas)
 
                 let save_url = '/save' + (unique_code != null ? `/${unique_code}` : ``)
 
