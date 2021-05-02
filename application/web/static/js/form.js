@@ -269,6 +269,19 @@ $(function() {
 
     $('#btn-choose-template').click(() => {
         //tampilkan loader
+        Swal.fire({
+            title: 'Almost Done',
+            html: 'We generate your data, please choose template after this loading finish',
+            allowOutsideClick: false,
+            showCancelButton: false,
+            showConfirmButton: false,
+            onBeforeOpen: () => {
+                Swal.showLoading()
+            },
+        });
+
+
+
         let foto = $('#photo')[0].files[0]
         console.log(foto)
         readFileAsDataURL(foto)
@@ -307,16 +320,19 @@ $(function() {
                     contentType: 'application/json',
                     success: (res) => {
                         if (res != 'ERROR') {
+                            swal.close();
                             if (unique_code == null) {
                                 unique_code = res
                             }
                             console.log('Sukses, ' + res)
                             window.location.replace(`/choosetemplate/${unique_code}`)
                         } else {
+                            swal.close();
                             alert('Gagal submit data')
                         }
                     },
                     error: (err) => {
+                        swal.close();
                         console.log('Ajax Error')
                         console.log(err)
                     }
