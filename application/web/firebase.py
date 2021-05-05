@@ -26,6 +26,9 @@ class Firebase:
     def read_templates(self):
         return self.template.get()
 
+    def read_template(self, id):
+        return self.template.child(id).get()
+
     def create_cv(self, data):
         unique_code = generate_unique_code()
         while self.read_cv(unique_code) != None:
@@ -43,6 +46,13 @@ class Firebase:
             return False
 
         self.cv.child(unique_code).update(data)
+        return True
+
+    def update_cv_template(self, unique_code, data):
+        if self.read_cv(unique_code) == None:
+            return False
+
+        self.cv.child(f'{unique_code}/template').update(data)
         return True
 
     def upload_file(self, file_data):

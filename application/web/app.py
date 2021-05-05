@@ -38,8 +38,8 @@ def choosetemplate(unique_code):
     }
     return render_template('choosetemplate.html', **ctx)
 
-@app.route('/download')
-def download():
+@app.route('/download/<unique_code>')
+def download(unique_code):
     ctx = {
         'title': 'Finish | Download CV',
         'js': [
@@ -63,14 +63,7 @@ def edit(unique_code):
 
 @app.route('/get/<unique_code>')
 def get(unique_code):
-    # get data from database
-    # parse it to string
-    # return it
-    print(unique_code)
-    '''
-    Update formnya make js aja, jadi ini ngereturn data cvnya aja, nah nanti ini dipanggil lewat ajax di form edit
-    '''
-
+    #print(unique_code)
     data = fb.read_cv(unique_code)
 
     if data == None:
@@ -78,15 +71,32 @@ def get(unique_code):
 
     return data
 
+@app.route('/set_template/<unique_code>',  methods=['POST'])
+def set_template(unique_code):
+    try:
+        print(request.json['template_id'])
+        data_cv = fb.read_cv(unique_code)
+        data_template = fb.read_template(request.json['template_id'])
+
+        print(data_template)
+        print(data_cv)
+        if data_cv == None or data_template == None:
+            abort(404)
+
+        fb.update_cv_template(f'{unique_code}', {
+            'nama': data_template['nama'],
+            'deskripsi': data_template['deskripsi'],
+            'file': data_template['file'],
+        })
+    except Exception as e:
+        print(e)
+        return 'ERROR'
+
+    return 'OK'
+
 @app.route('/save', defaults={ 'unique_code': None }, methods=['POST'])
 @app.route('/save/<unique_code>', methods=['POST'])
 def save(unique_code):
-    # get input as string of json,
-    # parse to json,
-    # get and convert base64 image to file,
-    # upload file to storage
-    # change photo field to url of uploaded file
-    # upload json to database
     if request.method == 'POST':
         try:  
             data = request.json
@@ -96,7 +106,7 @@ def save(unique_code):
             else:
                 if not fb.update_cv(unique_code, data):
                   return 'ERROR'
-            print('unique_code', unique_code)
+            #print('unique_code', unique_code)
             file_photo = convert(base64_photo, unique_code)
 
             fb.update_cv(f'{unique_code}/customer', {
@@ -105,7 +115,7 @@ def save(unique_code):
 
             return unique_code
         except Exception as e:
-            print('ini errornya', str(e))
+            #print('ini errornya', str(e))
             return 'ERROR'
     return 'OK'
 

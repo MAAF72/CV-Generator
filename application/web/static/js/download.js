@@ -11,8 +11,8 @@ $(function() {
                 a.click()
                 window.URL.revokeObjectURL(url)
                 alert('your file has downloaded!')
-        })
-        .catch(() => alert('Gagal cok'))
+            })
+            .catch(() => alert('Gagal cok'))
     }
 
     downloader("https://storage.googleapis.com/cv-generator-e29dd.appspot.com/cv/-MXjigtztMHe_iJ6I8U3.pdf")

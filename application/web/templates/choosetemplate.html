@@ -43,7 +43,7 @@
                     <div class="row">
 
                         {% for t in templates %}
-                        <div class="radio col-4" data-value="template-code-{{t}}"><img class="cv-preview" src="{{ templates[t].preview }}"></div>
+                        <div class="radio col-4" data-value="{{t}}"><img class="cv-preview" src="{{ templates[t].preview }}"></div>
                         {% endfor %}
 
 
@@ -70,5 +70,7 @@
         <!--additional script-->
         {% for e in js %}<script src="{{ url_for('static', filename='js/' + e) }}"></script>{% endfor %}
 
+        <!--swalalert-->
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     </body>
 </html>
