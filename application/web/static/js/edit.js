@@ -9,15 +9,15 @@ $(function() {
             const customer = res.customer
 
             $('#form-customer #nama').val(customer.nama)
-            //$('#form-customer #email').val(customer.email)
-            //$('#form-customer #no_hp').val(customer.no_hp)
+            $('#form-customer #email').val(customer.email)
+            $('#form-customer #no_hp').val(customer.no_hp)
             $('#form-customer #job').val(customer.job)
-            //$('#form-customer #deskripsi').val(customer.deskripsi)
+            $('#form-customer #portfolio').val(customer.portfolio)
+            $('#form-customer #deskripsi').val(customer.deskripsi)
 
-            //nanti pakai destructuring aja, samain aja sama struktur jsonnya
             const list_bahasa = customer.list_bahasa
             for (let i = 0; i < list_bahasa.length; i++) {
-
+                
             }
 
             const list_kemampuan = customer.list_kemampuan

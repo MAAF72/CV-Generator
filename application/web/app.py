@@ -14,7 +14,7 @@ def home():
             'input.js'
         ]
     }
-    return render_template('landingpage.html', **ctx)
+    return render_template('landing.html', **ctx)
 
 @app.route('/input')
 def input():
@@ -27,8 +27,8 @@ def input():
     }
     return render_template('form.html', **ctx)
 
-@app.route('/choosetemplate/<unique_code>')
-def choosetemplate(unique_code):
+@app.route('/choose-template/<unique_code>')
+def choose_template(unique_code):
     ctx = {
         'title': 'Choose Template You Like',
         'js': [
@@ -36,7 +36,7 @@ def choosetemplate(unique_code):
         ],
         'templates': fb.read_templates()
     }
-    return render_template('choosetemplate.html', **ctx)
+    return render_template('choose_template.html', **ctx)
 
 @app.route('/download/<unique_code>')
 def download(unique_code):
@@ -71,15 +71,12 @@ def get(unique_code):
 
     return data
 
-@app.route('/set_template/<unique_code>',  methods=['POST'])
+@app.route('/set-template/<unique_code>',  methods=['POST'])
 def set_template(unique_code):
     try:
-        print(request.json['template_id'])
         data_cv = fb.read_cv(unique_code)
         data_template = fb.read_template(request.json['template_id'])
 
-        print(data_template)
-        print(data_cv)
         if data_cv == None or data_template == None:
             abort(404)
 
@@ -88,8 +85,8 @@ def set_template(unique_code):
             'deskripsi': data_template['deskripsi'],
             'file': data_template['file'],
         })
+
     except Exception as e:
-        print(e)
         return 'ERROR'
 
     return 'OK'
@@ -106,7 +103,7 @@ def save(unique_code):
             else:
                 if not fb.update_cv(unique_code, data):
                   return 'ERROR'
-            #print('unique_code', unique_code)
+
             file_photo = convert(base64_photo, unique_code)
 
             fb.update_cv(f'{unique_code}/customer', {
@@ -115,7 +112,6 @@ def save(unique_code):
 
             return unique_code
         except Exception as e:
-            #print('ini errornya', str(e))
             return 'ERROR'
     return 'OK'
 

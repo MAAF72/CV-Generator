@@ -4,7 +4,6 @@ $(function() {
     const save_url = `/set_template/${unique_code}`
 
     let template_id = null
-    console.log(`Unique Code = ${unique_code}`)
 
     $('#download-cv').click(() => {
         if (template_id == null) {
@@ -15,7 +14,7 @@ $(function() {
         //tampilkan loader
         Swal.fire({
             title: 'Almost Done',
-            html: 'We generate your data, cv u udh rede buat didonlod after this loading finish',
+            html: 'Your CV will be ready to download...',
             allowOutsideClick: false,
             showCancelButton: false,
             showConfirmButton: false,
@@ -24,9 +23,6 @@ $(function() {
             },
         });
 
-        console.log(`Unique Code = ${unique_code}`)
-        console.log(template_id);
-        //do operation here to update cv's template with selected template then proceed to download page
         $.ajax({
             url: save_url,
             type: 'POST',
@@ -35,7 +31,6 @@ $(function() {
             success: (res) => {
                 if (res != 'ERROR') {
                     swal.close();
-                    console.log('Sukses, ' + res)
                     window.location.replace(`/download/${unique_code}`)
                 } else {
                     swal.close();
