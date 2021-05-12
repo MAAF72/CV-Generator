@@ -6,7 +6,7 @@ import json
 app = Flask(__name__)
 fb = Firebase()
 
-@app.route('/home')
+@app.route('/')
 def home():
     ctx = {
         'title': 'Homepage CV-Generator',
@@ -50,7 +50,7 @@ def download(unique_code):
 
 @app.route('/edit/<unique_code>')
 def edit(unique_code):
-    if fb.read_cv(unique_code) == None:
+    if fb.read_cv(unique_code) is None:
       abort(404)
 
     ctx = {
@@ -66,7 +66,7 @@ def get(unique_code):
     #print(unique_code)
     data = fb.read_cv(unique_code)
 
-    if data == None:
+    if data is None:
       abort(404)
 
     return data
@@ -74,13 +74,15 @@ def get(unique_code):
 @app.route('/set-template/<unique_code>',  methods=['POST'])
 def set_template(unique_code):
     try:
+        template_id = request.json['template_id']
         data_cv = fb.read_cv(unique_code)
-        data_template = fb.read_template(request.json['template_id'])
+        data_template = fb.read_template(template_id)
 
-        if data_cv == None or data_template == None:
+        if data_cv is None or data_template is None:
             abort(404)
 
         fb.update_cv_template(f'{unique_code}', {
+            'id': template_id,
             'nama': data_template['nama'],
             'deskripsi': data_template['deskripsi'],
             'file': data_template['file'],
@@ -98,17 +100,18 @@ def save(unique_code):
         try:  
             data = request.json
             base64_photo, data['customer']['foto'] = data['customer']['foto'], ''
-            if unique_code == None:
+            if unique_code is None:
                 unique_code = fb.create_cv(data)
             else:
                 if not fb.update_cv(unique_code, data):
                   return 'ERROR'
 
-            file_photo = convert(base64_photo, unique_code)
+            if base64_photo:
+                file_photo = convert(base64_photo, unique_code)
 
-            fb.update_cv(f'{unique_code}/customer', {
-                'foto': fb.upload_file(file_photo)                
-            })
+                fb.update_cv(f'{unique_code}/customer', {
+                    'foto': fb.upload_file(file_photo)                
+                })
 
             return unique_code
         except Exception as e:

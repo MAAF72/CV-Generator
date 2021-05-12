@@ -5,11 +5,6 @@
     </head>
     <!-- Bootstrap CDN-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-    
 
     <!-- import custome css-->
     <link href="{{ url_for('static', filename='css/modif.css') }}" rel="stylesheet">
@@ -27,7 +22,7 @@
                     </div>
                     <div class="col-6">
                         <div class="mx-auto">
-                            <img src="../static/assets/1-x-x.png" alt="multi-step" class="img-fluid multi-step-image">
+                            <img src="{{ url_for('static', filename='assets/1-x-x.png') }}" alt="multi-step" class="img-fluid multi-step-image">
                         </div>
                     </div>
                 </div>
@@ -44,20 +39,20 @@
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                         <form id="form-customer">
                             <div class="form-group">Picture
-                                <input type="file" name="photo" id="photo" class="form-control-file" accept="image/*">
+                                <input type="file" name="photo" id="photo" class="form-control-file" accept="image/*" required>
                             </div>
                             <div class="div-content-row">
-                                <input type="text" class="form-control" id="nama" name="nama" aria-describedby="fullname" placeholder="Your Full Name">
+                                <input type="text" class="form-control" id="nama" name="nama" aria-describedby="fullname" placeholder="Your Full Name" required>
                                 <div style="width: 16px;"></div>
-                                <input type="text" class="form-control" id="email" name="email" aria-describedby="Email" placeholder="Email">
+                                <input type="text" class="form-control" id="email" name="email" aria-describedby="Email" placeholder="Email" required>
                             </div>
                             <div class="div-content-row">
-                                <input type="text" class="form-control" id="no_hp" name="no_hp" aria-describedby="Phone" placeholder="Phone">
+                                <input type="text" class="form-control" id="no_hp" name="no_hp" aria-describedby="Phone" placeholder="Phone" required>
                                 <div style="width: 16px;"></div>
-                                <input type="text" class="form-control" id="portfolio" name="portfolio" aria-describedby="portfolio" placeholder="portfolio">
+                                <input type="text" class="form-control" id="portfolio" name="portfolio" aria-describedby="Portfolio" placeholder="Portfolio" required>
                             </div>
                             <div class="div-content-row">
-                                <input type="text" class="form-control" id="job" name="job" aria-describedby="job" placeholder="Job">
+                                <input type="text" class="form-control" id="job" name="job" aria-describedby="job" placeholder="Job" required>
                             </div>
                             <div class="div-content-row">
                                 <textarea class="form-control" id="deskripsi" name="deskripsi" rows="3" placeholder="Your responsibilty"></textarea>
@@ -140,37 +135,19 @@
                             <button type="button" id="add-kemampuan" class="btn btn-outline-primary">Add more</button>
                         </div>
                     </div>
-                    <!--
-                        <div class="col div-container">
-                            <h5>Skills</h5>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            <form id="form-skills">
-                                <div class="div-content-row">
-                                    <input type="text" class="form-control" name="name" aria-describedby="fullname" placeholder="Skills">
-                                </div>
-                                <div class="row justify-content-end">
-                                    <button type="button" class="btn btn-outline-danger justify-content-end">Delete This Skills</button>
-                                </div>
-                                <hr>
-                            </form>
-                            <div class="row justify-content-center">
-                                <button type="button" id="add-skills" class="btn btn-outline-primary">Add more</button>
-                            </div>
-                        </div>
-                        -->
                 </div>
             </div>
         </div>
         <div style="height: 300px;"></div>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.min.js"></script>
         <!--script form-->
         <script src="{{ url_for('static', filename='js/form.js') }}"></script>
         <!--additional script-->
         {% for e in js %}<script src="{{ url_for('static', filename='js/' + e) }}"></script>{% endfor %}
-    
-    
         <!--swalalert-->
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-    
     </body>
 </html>

@@ -5,9 +5,7 @@
     </head>
     <!-- Bootstrap CDN-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
     <!-- import custome css-->
     <link href="{{ url_for('static', filename='css/modif.css') }}" rel="stylesheet">
     <style>
@@ -63,30 +61,18 @@
                 </div>
                 <div class="col-6 m-auto">
                     <div class="mx-auto">
-                        <img src="../static/assets/1-2-x.png" alt="multi-step" class="img-fluid multi-step-image">
+                        <img src="{{ url_for('static', filename='assets/1-2-x.png') }}" alt="multi-step" class="img-fluid multi-step-image">
                     </div>
                 </div>
             </div>
         </div>
         </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
         <!--additional script-->
         {% for e in js %}<script src="{{ url_for('static', filename='js/' + e) }}"></script>{% endfor %}
-
         <!--swalalert-->
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-
-        <script>
-            //button edit
-            document.getElementById("edit-cv").onclick = function () {
-                var x = //get unique_code
-                location.href = "/edit/" + x ;
-            };
-
-            //button download
-            document.getElementById("download-cv").onclick = function () {
-                var x = //get value cv code
-                location.href = "/download/" + x ;
-            };
-        </script>
     </body>
 </html>

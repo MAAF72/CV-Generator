@@ -42,14 +42,14 @@ class Firebase:
         return self.cv.child(unique_code).get()
 
     def update_cv(self, unique_code, data):
-        if self.read_cv(unique_code) == None:
+        if self.read_cv(unique_code) is None:
             return False
 
         self.cv.child(unique_code).update(data)
         return True
 
     def update_cv_template(self, unique_code, data):
-        if self.read_cv(unique_code) == None:
+        if self.read_cv(unique_code) is None:
             return False
 
         self.cv.child(f'{unique_code}/template').update(data)

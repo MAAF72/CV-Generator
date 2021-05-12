@@ -2,22 +2,15 @@ $(function() {
     const path_name = window.location.pathname.split('/')
     const unique_code = path_name[2]
 
-    console.log(`Unique Code = ${unique_code}`)
     $.get(`/get/${unique_code}`, dataType='json')
         .done((res) => {
-            console.log(res)
             const customer = res.customer
 
-            $('#form-customer #nama').val(customer.nama)
-            $('#form-customer #email').val(customer.email)
-            $('#form-customer #no_hp').val(customer.no_hp)
-            $('#form-customer #job').val(customer.job)
-            $('#form-customer #portfolio').val(customer.portfolio)
-            $('#form-customer #deskripsi').val(customer.deskripsi)
+            fill_identity(customer)
 
             const list_bahasa = customer.list_bahasa
             for (let i = 0; i < list_bahasa.length; i++) {
-                
+                add_bahasa(list_bahasa[i])
             }
 
             const list_kemampuan = customer.list_kemampuan
@@ -47,9 +40,8 @@ $(function() {
 
             const list_sosial_media = customer.list_sosial_media
             for (let i = 0; i < list_sosial_media.length; i++) {
-                add_socialmedia(list_sosial_media[i])
+                add_sosial_media(list_sosial_media[i])
             }
-            //load the photo
         })
         .fail((err) => {
             alert(`There is no CV with code ${unique_code}`)

@@ -1,3 +1,5 @@
+const parser = new DOMParser();
+
 //navbar show when scroll down
 window.onscroll = function() {
   var currentScrollPos = window.pageYOffset;
@@ -41,16 +43,17 @@ async function readFileAsDataURL(file) {
     return result_base64;
 }
 
-function fill_identity({ nama = '', email = '', no_hp = '', portolio = '', job = '', deskripsi = '', photo = ''}) {
-    /*
-    $('#form-customer #nama').val(customer.nama)
-    //$('#form-customer #email').val(customer.email)
-    //$('#form-customer #no_hp').val(customer.no_hp)
-    $('#form-customer #job').val(customer.job)
-    //$('#form-customer #deskripsi').val(customer.deskripsi)
+function element_from_string(str) {
+    return parser.parseFromString(str, 'text/html').getRootNode().body.firstElementChild
+}
 
-    //nanti pakai destructuring aja, samain aja sama struktur jsonnya
-    */
+function fill_identity({ nama = '', email = '', no_hp = '', portfolio = '', job = '', deskripsi = '', photo = ''}) {
+    $('#form-customer #nama').val(nama)
+    $('#form-customer #email').val(email)
+    $('#form-customer #no_hp').val(no_hp)
+    $('#form-customer #job').val(job)
+    $('#form-customer #portfolio').val(portfolio)
+    $('#form-customer #deskripsi').val(deskripsi)
 }
 
 /* Start : Add More Button */
@@ -70,7 +73,8 @@ function add_sosial_media({ nama = '', link = '' }) {
         </div>
         <hr>
     </div>`
-    document.getElementById('form-socialmedia').insertAdjacentHTML('beforeend', html)
+    const el = element_from_string(html)
+    document.getElementById('form-socialmedia').appendChild(el)
 }
 
 function add_edukasi({ jenjang = '', instansi = '', tahun_mulai = '', tahun_selesai = '', deskripsi = '' }) {
@@ -98,7 +102,8 @@ function add_edukasi({ jenjang = '', instansi = '', tahun_mulai = '', tahun_sele
         <hr>
     </div>
     `
-    document.getElementById('form-edukasi').insertAdjacentHTML('beforeend', html)
+    const el = element_from_string(html)
+    document.getElementById('form-edukasi').appendChild(el)
 }
 
 function add_penghargaan({ nama = '', instansi = '', tahun = '', deskripsi = '' }) {
@@ -124,7 +129,8 @@ function add_penghargaan({ nama = '', instansi = '', tahun = '', deskripsi = '' 
         <hr>
     </div>
     `
-    document.getElementById('form-penghargaan').insertAdjacentHTML('beforeend', html)
+    const el = element_from_string(html)
+    document.getElementById('form-penghargaan').appendChild(el)
 }    
 
 function add_kemampuan({ nama = '' }) {
@@ -142,7 +148,8 @@ function add_kemampuan({ nama = '' }) {
         <hr>
     </div>
     `
-    document.getElementById('form-kemampuan').insertAdjacentHTML('beforeend', html)
+    const el = element_from_string(html)
+    document.getElementById('form-kemampuan').appendChild(el)
 }
 
 function add_pengalaman({ nama = '', instansi = '', tahun_mulai = '', tahun_selesai = '', deskripsi = '' }) {
@@ -172,7 +179,8 @@ function add_pengalaman({ nama = '', instansi = '', tahun_mulai = '', tahun_sele
         <hr>
     </div>
     `
-    document.getElementById('form-pengalaman').insertAdjacentHTML('beforeend', html)
+    const el = element_from_string(html)
+    document.getElementById('form-pengalaman').appendChild(el)
 }
 
 function add_rujukan({ nama = '', instansi = '', no_hp = '', email = '' }) {
@@ -198,7 +206,8 @@ function add_rujukan({ nama = '', instansi = '', no_hp = '', email = '' }) {
         <hr>
     </div>
     `
-    document.getElementById('form-rujukan').insertAdjacentHTML('beforeend', html)
+    const el = element_from_string(html)
+    document.getElementById('form-rujukan').appendChild(el)
 }
 
 function add_bahasa({ nama = '', level = '' }) {
@@ -209,13 +218,10 @@ function add_bahasa({ nama = '', level = '' }) {
             <div style="width: 16px;"></div>
             <select class="custom-select" id="level" name="level">
                 <option hidden value="">Choose Level</option>
-                <option value="Elementary">Elementary</option>
-                <option value="Professional">Professional</option>
-                <option value="Native">Native</option>
+                <option value="Elementary" ${level == 'Elementary' ? 'selected' : ''}>Elementary</option>
+                <option value="Professional" ${level == 'Professional' ? 'selected' : ''}>Professional</option>
+                <option value="Native" ${level == 'Native' ? 'selected' : ''}>Native</option>
             </select>
-            <!--
-                <input type="text" class="form-control" id="level" name="level" aria-describedby="level" placeholder="Level">
-                -->
         </div>
         <div class="row justify-content-end">
             <button type="button" id="delete-bahasa" class="btn btn-outline-danger justify-content-end">
@@ -227,13 +233,14 @@ function add_bahasa({ nama = '', level = '' }) {
         <hr>
     </div>
     `
-    document.getElementById('form-bahasa').insertAdjacentHTML('beforeend', html)
+    const el = element_from_string(html)
+    document.getElementById('form-bahasa').appendChild(el)
 }
 /* End : Add More Button */
 
 /* Start : Delete Button */
-function delete_form_data(elem) {
-    elem.parentNode.parentNode.remove()
+function delete_form_data(el) {
+    el.parentNode.parentNode.remove()
 }
 /* End : Delete Button */
 
@@ -257,87 +264,81 @@ $(function() {
 
     $(document).on("change", `[id*="tahun_mulai"]`, function() {
         // get value of this(tahun_mulai) with format year-month-day
-        var month = this.getUTCMonth() + 1; //months from 1-12
-        var day = this.getUTCDate();
-        var year = this.getUTCFullYear();
-
-        newdate = year + "-" + month + "-" + day;
-
+        var date = new Date(this.value);
         const tahun_selesai = $(this).siblings('#tahun_selesai')[0]
-        $(tahun_selesai).attr('min', newdate)
+        $(tahun_selesai).attr('min', date.toLocaleDateString('fr-CA'))
     })
 
-    $('#btn-choose-template').click(() => {
-        //tampilkan loader
-        Swal.fire({
-            title: 'Almost Done',
-            html: 'We generate your data, please choose template after this loading finish',
-            allowOutsideClick: false,
-            showCancelButton: false,
-            showConfirmButton: false,
-            onBeforeOpen: () => {
-                Swal.showLoading()
-            },
-        });
-
-
-
+    $('#btn-choose-template').click((e) => {
         let foto = $('#photo')[0].files[0]
-        console.log(foto)
-        readFileAsDataURL(foto)
-            .then((foto_base64) => {
-                let formCustomer = serialize($('#form-customer'), 6);
-                let formSocialmedia = serialize($('#form-socialmedia'), 2);
-                let formEdukasi = serialize($('#form-edukasi'), 5);
-                let formPenghargaan = serialize($('#form-penghargaan'), 4);
-                let formPengalaman = serialize($('#form-pengalaman'), 5);
-                let formRujukan = serialize($('#form-rujukan'), 4);
-                let formBahasa = serialize($('#form-bahasa'), 2);
-                let formKemampuan = serialize($('#form-kemampuan'), 1);
+        
+        if (foto) {
+            readFileAsDataURL(foto)
+                .then((foto_base64) => {
+                    let formCustomer = serialize($('#form-customer'), 6);
+                    let formSocialmedia = serialize($('#form-socialmedia'), 2);
+                    let formEdukasi = serialize($('#form-edukasi'), 5);
+                    let formPenghargaan = serialize($('#form-penghargaan'), 4);
+                    let formPengalaman = serialize($('#form-pengalaman'), 5);
+                    let formRujukan = serialize($('#form-rujukan'), 4);
+                    let formBahasa = serialize($('#form-bahasa'), 2);
+                    let formKemampuan = serialize($('#form-kemampuan'), 1);
 
-                let datas = {
-                    'customer': {
-                        ...formCustomer[0],
-                        'foto': foto_base64,
-                        'list_sosial_media': formSocialmedia,
-                        'list_edukasi': formEdukasi,
-                        'list_penghargaan': formPenghargaan,
-                        'list_pengalaman': formPengalaman,
-                        'list_rujukan': formRujukan,
-                        'list_bahasa': formBahasa,
-                        'list_kemampuan': formKemampuan,
-                    }
-                }
-
-                console.log(datas)
-
-                let save_url = '/save' + (unique_code != null ? `/${unique_code}` : ``)
-
-                $.ajax({
-                    url: save_url,
-                    type: 'POST',
-                    data: JSON.stringify(datas),
-                    contentType: 'application/json',
-                    success: (res) => {
-                        if (res != 'ERROR') {
-                            swal.close();
-                            if (unique_code == null) {
-                                unique_code = res
-                            }
-                            console.log('Sukses, ' + res)
-                            window.location.replace(`/choose-template/${unique_code}`)
-                        } else {
-                            swal.close();
-                            alert('Gagal submit data')
+                    let datas = {
+                        'customer': {
+                            ...formCustomer[0],
+                            'foto': foto_base64,
+                            'list_sosial_media': formSocialmedia,
+                            'list_edukasi': formEdukasi,
+                            'list_penghargaan': formPenghargaan,
+                            'list_pengalaman': formPengalaman,
+                            'list_rujukan': formRujukan,
+                            'list_bahasa': formBahasa,
+                            'list_kemampuan': formKemampuan,
                         }
-                    },
-                    error: (err) => {
-                        swal.close();
-                        console.log('Ajax Error')
-                        console.log(err)
                     }
+
+                    let save_url = '/save' + (unique_code != null ? `/${unique_code}` : ``)
+
+                    $.ajax({
+                        url: save_url,
+                        type: 'POST',
+                        data: JSON.stringify(datas),
+                        contentType: 'application/json',
+                        beforeSend: () => {
+                            //tampilkan loader
+                            Swal.fire({
+                                title: 'Almost Done',
+                                html: 'We generate your data, please choose template after this loading finish',
+                                allowOutsideClick: false,
+                                showCancelButton: false,
+                                showConfirmButton: false,
+                                onBeforeOpen: () => {
+                                    Swal.showLoading()
+                                },
+                            })
+                        },
+                        success: (res) => {
+                            if (res != 'ERROR') {
+                                swal.close();
+                                if (unique_code == null) {
+                                    unique_code = res
+                                }
+                                window.location.replace(`/choose-template/${unique_code}`)
+                            } else {
+                                swal.close();
+                                alert('Failed to save your data')
+                            }
+                        },
+                        error: (err) => {
+                            swal.close();
+                            alert('Error on saving your data')
+                        }
+                    })
                 })
-            })
+        } else {
+            alert('Please upload your photo')
+        }
     })
 })
 /* End : Button Handler Using JQuery */
