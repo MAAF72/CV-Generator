@@ -32,17 +32,17 @@
                         <div class="col-5 div-container">
                             <h5>Create CV</h5>
                             <p>create your cv easily and quickly, no need to design.</p>
-                            <button type="button" class="btn btn-primary mb-2">CREATE MY CV</button>
+                            <button type="button" onclick="location.href = '/input';" class="btn btn-primary mb-2">CREATE MY CV</button>
                         </div>
                         <div class="col-5 div-container">
                             <h5>Edit My Old CV</h5>
                             <p>unique code obtained before you download your old cv.</p>
                             <form class="form-inline">
                                 <div class="form-group mx-sm-3 mb-2">
-                                    <label for="input-unique-code" class="sr-only">unique code</label>
+                                    <label for="label-input-unique-code" class="sr-only">unique code</label>
                                     <input type="text" class="form-control" id="input-unique-code" placeholder="unique code">
                                 </div>
-                                <button type="submit" class="btn btn-light mb-2">Edit</button>
+                                <button type="button" class="btn btn-light mb-2" id="edit-cv" >Edit</button>
                             </form>
                         </div>
                     </div>
@@ -55,4 +55,12 @@
             </div>
         </footer>
     </body>
+    <script>
+
+        //button edit
+        document.getElementById("edit-cv").onclick = function () {
+            var x = document.getElementById("input-unique-code").value;
+            location.href = "/edit/" + x ;
+        };
+    </script>
 </html>

@@ -57,7 +57,7 @@
                     <div>
                         <h5>Your CV ready to Download</h5>
                         <p>Lorem ipsum dolor sit amet, consectur adipiscing elit.</p>
-                        <button type="button" class="btn btn-light text-uppercase font-weight-bolder">Back to input my data</button>
+                        <button type="button" class="btn btn-light text-uppercase font-weight-bolder" id="edit-cv">Back to input my data</button>
                         <button type="button" class="btn btn-primary text-uppercase font-weight-bolder" id="download-cv">Download to my CV</button>
                     </div>
                 </div>
@@ -72,5 +72,19 @@
 
         <!--swalalert-->
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+        <script>
+            //button edit
+            document.getElementById("edit-cv").onclick = function () {
+                var x = //get unique_code
+                location.href = "/edit/" + x ;
+            };
+
+            //button download
+            document.getElementById("download-cv").onclick = function () {
+                var x = //get value cv code
+                location.href = "/download/" + x ;
+            };
+        </script>
     </body>
 </html>

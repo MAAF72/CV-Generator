@@ -325,7 +325,7 @@ $(function() {
                                 unique_code = res
                             }
                             console.log('Sukses, ' + res)
-                            window.location.replace(`/choosetemplate/${unique_code}`)
+                            window.location.replace(`/choose-template/${unique_code}`)
                         } else {
                             swal.close();
                             alert('Gagal submit data')
