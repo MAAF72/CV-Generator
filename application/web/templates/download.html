@@ -17,7 +17,7 @@
                         <h5>Here you CV</h5>
                         <p>Please save the unique code to reuse or edit this CV in Future!</p>
                         <div class="div-content-row">
-                            <input type="text" class="form-control" id="kode-unik" name="kode-unik" aria-describedby="kode-unik" placeholder="kode-unik" value="XXXX-XXXX-XXXX-XXXX">
+                            <input type="text" class="form-control" id="kode-unik" name="kode-unik" aria-describedby="kode-unik" placeholder="kode-unik">
 
                             <div style="width: 16px;"></div>
 
@@ -60,5 +60,13 @@
         {% for e in js %}<script src="{{ url_for('static', filename='js/' + e) }}"></script>{% endfor %}
         <!--swalalert-->
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+        <!---->
+        <script>
+            //with hardcode regex
+            var unique_code_for_customer = location.href;
+            document.getElementById("kode-unik").value = unique_code_for_customer.match(/([^\/]*)\/*$/)[1];
+
+        </script>
     </body>
 </html>
