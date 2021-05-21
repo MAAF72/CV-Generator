@@ -50,4 +50,8 @@ $(function() {
     }
 
     generate()
+    
+    //showing value = unique_code in tags input
+    document.getElementById("kode-unik").value = unique_code;
 })
+
