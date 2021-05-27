@@ -1,8 +1,7 @@
 from firebase_admin import credentials, db, initialize_app, storage
-from firebase_admin.exceptions import FirebaseError
+from singleton import Singleton
 import random
 import string
-import os
 
 def generate_unique_code():
     def rand_aplhanum(k):
@@ -10,7 +9,7 @@ def generate_unique_code():
 
     return '-'.join(rand_aplhanum(4) for _ in range(3))
 
-class Firebase:
+class Firebase(metaclass=Singleton):
     def __init__(self):
         initialize_app(
             credentials.Certificate('cv-generator-e29dd-firebase-adminsdk-zvelg-ae5fe10a7a.json'), 

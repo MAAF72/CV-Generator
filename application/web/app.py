@@ -1,7 +1,6 @@
 from flask import Flask, render_template, request, abort
 from firebase import Firebase
 from blob_converter import convert
-import json
 
 app = Flask(__name__)
 fb = Firebase()
