@@ -10,7 +10,8 @@ def home():
     ctx = {
         'title': 'Homepage CV-Generator',
         'js': [
-            'input.js'
+            'landing.js',
+            'input.js',
         ]
     }
     return render_template('landing.html', **ctx)
@@ -21,6 +22,7 @@ def input():
     ctx = {
         'title': 'Input Data',
         'js': [
+            'form.js',
             'input_test.js' if test else 'input.js',
         ]
     }
@@ -31,7 +33,7 @@ def choose_template(unique_code):
     ctx = {
         'title': 'Choose Template You Like',
         'js': [
-            'choose_template.js'
+            'choose_template.js',
         ],
         'templates': fb.read_templates()
     }
@@ -42,7 +44,7 @@ def download(unique_code):
     ctx = {
         'title': 'Finish | Download CV',
         'js': [
-            'download.js'
+            'download.js',
         ]
     }
     return render_template('download.html', **ctx)
@@ -55,7 +57,8 @@ def edit(unique_code):
     ctx = {
         'title': 'Edit Data',
         'js': [
-            'edit.js'
+            'form.js',
+            'edit.js',
         ]
     }
     return render_template('form.html', **ctx)
