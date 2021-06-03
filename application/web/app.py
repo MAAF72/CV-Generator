@@ -9,6 +9,7 @@ fb = Firebase()
 def home():
     ctx = {
         'title': 'Homepage CV-Generator',
+        'css': [],
         'js': [
             'landing.js',
             'input.js',
@@ -21,6 +22,7 @@ def input():
     test = True
     ctx = {
         'title': 'Input Data',
+        'css': [],
         'js': [
             'form.js',
             'input_test.js' if test else 'input.js',
@@ -32,6 +34,9 @@ def input():
 def choose_template(unique_code):
     ctx = {
         'title': 'Choose Template You Like',
+        'css': [
+            'choose_template.css'
+        ],
         'js': [
             'choose_template.js',
         ],
@@ -43,6 +48,7 @@ def choose_template(unique_code):
 def download(unique_code):
     ctx = {
         'title': 'Finish | Download CV',
+        'css': [],
         'js': [
             'download.js',
         ]
@@ -56,6 +62,7 @@ def edit(unique_code):
 
     ctx = {
         'title': 'Edit Data',
+        'css': [],
         'js': [
             'form.js',
             'edit.js',
@@ -65,7 +72,6 @@ def edit(unique_code):
 
 @app.route('/get/<unique_code>')
 def get(unique_code):
-    #print(unique_code)
     data = fb.read_cv(unique_code)
 
     if data is None:
@@ -99,24 +105,35 @@ def set_template(unique_code):
 @app.route('/save/<unique_code>', methods=['POST'])
 def save(unique_code):
     if request.method == 'POST':
-        try:  
+        try:
             data = request.json
-            base64_photo, data['customer']['foto'] = data['customer']['foto'], ''
-            if unique_code is None:
-                unique_code = fb.create_cv(data)
-            else:
+
+            base64_photo = None
+
+            if 'foto' in data['customer']:
+                base64_photo = data['customer']['foto']
+                del data['customer']['foto']
+
+            url_file_photo = None
+
+            if unique_code:
+                url_file_photo = fb.read_cv(unique_code)['customer']['foto']
                 if not fb.update_cv(unique_code, data):
                   return 'ERROR'
+            else:
+                unique_code = fb.create_cv(data)
 
             if base64_photo:
                 file_photo = convert(base64_photo, unique_code)
+                url_file_photo = fb.upload_file(file_photo)
 
-                fb.update_cv(f'{unique_code}/customer', {
-                    'foto': fb.upload_file(file_photo)                
-                })
+            fb.update_cv(f'{unique_code}/customer', {
+                'foto': url_file_photo
+            })
 
             return unique_code
         except Exception as e:
+            print(e)
             return 'ERROR'
     return 'OK'
 

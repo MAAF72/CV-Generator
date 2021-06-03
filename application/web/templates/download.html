@@ -8,6 +8,8 @@
     
     <!-- import custome css-->
     <link href="{{ url_for('static', filename='css/modif.css') }}" rel="stylesheet">
+    <!--additional css-->
+    {% for e in css %}<link href="{{ url_for('static', filename='css/' + e) }}" rel="stylesheet">{% endfor %}
     <body>
         <!-- navbar -->
         <div class="mx-auto navbar fixed-bottom" id="navbar-div">

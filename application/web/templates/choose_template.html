@@ -8,31 +8,8 @@
     
     <!-- import custome css-->
     <link href="{{ url_for('static', filename='css/modif.css') }}" rel="stylesheet">
-    <style>
-        body {
-        background-color: #F4F4FE;
-        }
-        .cv {
-        height: 556px;
-        background-color: #C5C5D2;
-        margin: 15px 0;
-        }
-        .cv-preview {
-            width: 100%;
-            height: auto;
-            margin: 0;
-            padding: 0;
-        }
-        .action {
-        height: 240px;
-        padding: 15px;
-        background-color: #FFFFFF;
-        }
-        .breadcrum {
-        height: 158px;
-        background-color: #C4C4C4;
-        }
-    </style>
+    <!--additional css-->
+    {% for e in css %}<link href="{{ url_for('static', filename='css/' + e) }}" rel="stylesheet">{% endfor %}
     <body>
         <!--Content-->
         <div class="container">

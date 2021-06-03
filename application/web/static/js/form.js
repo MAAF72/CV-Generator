@@ -19,7 +19,7 @@ function toJson(obj) {
     return data
 }
 
-function serialize(form, cnt, py_class = null) {
+function serialize(form, cnt) {
     let arr = form.serializeArray()
     if (arr.length % cnt != 0) throw Error('Macem tak betul yang ngoding')
 
@@ -246,6 +246,72 @@ function delete_form_data(el) {
 
 /* Start : Button Handler Using JQuery */
 $(function() {
+    function upload_data(foto_base64 = null) {
+        let formCustomer = serialize($('#form-customer'), 6);
+        let formSocialmedia = serialize($('#form-socialmedia'), 2);
+        let formEdukasi = serialize($('#form-edukasi'), 5);
+        let formPenghargaan = serialize($('#form-penghargaan'), 4);
+        let formPengalaman = serialize($('#form-pengalaman'), 5);
+        let formRujukan = serialize($('#form-rujukan'), 4);
+        let formBahasa = serialize($('#form-bahasa'), 2);
+        let formKemampuan = serialize($('#form-kemampuan'), 1);
+
+        let datas = {
+            'customer': {
+                ...formCustomer[0],
+                'list_sosial_media': formSocialmedia,
+                'list_edukasi': formEdukasi,
+                'list_penghargaan': formPenghargaan,
+                'list_pengalaman': formPengalaman,
+                'list_rujukan': formRujukan,
+                'list_bahasa': formBahasa,
+                'list_kemampuan': formKemampuan,
+            }
+        }
+
+        if (foto_base64) {
+            datas['customer']['foto'] = foto_base64
+        }
+
+        let save_url = '/save' + (unique_code ? `/${unique_code}` : ``)
+
+        $.ajax({
+            url: save_url,
+            type: 'POST',
+            data: JSON.stringify(datas),
+            contentType: 'application/json',
+            beforeSend: () => {
+                //tampilkan loader
+                Swal.fire({
+                    title: 'Almost Done',
+                    html: 'We generate your data, please choose template after this loading finish',
+                    allowOutsideClick: false,
+                    showCancelButton: false,
+                    showConfirmButton: false,
+                    onBeforeOpen: () => {
+                        Swal.showLoading()
+                    },
+                })
+            },
+            success: (res) => {
+                if (res != 'ERROR') {
+                    swal.close();
+                    if (!unique_code) {
+                        unique_code = res
+                    }
+                    window.location.replace(`/choose-template/${unique_code}`)
+                } else {
+                    swal.close();
+                    alert('Failed to save your data')
+                }
+            },
+            error: (err) => {
+                swal.close();
+                alert('Error on saving your data')
+            }
+        })
+    }
+
     const path_name = window.location.pathname.split('/')
     let unique_code = path_name.length >= 3 ? path_name[2] : null
 
@@ -272,72 +338,11 @@ $(function() {
     $('#btn-choose-template').click((e) => {
         let foto = $('#photo')[0].files[0]
         
-        if (foto) {
-            readFileAsDataURL(foto)
-                .then((foto_base64) => {
-                    let formCustomer = serialize($('#form-customer'), 6);
-                    let formSocialmedia = serialize($('#form-socialmedia'), 2);
-                    let formEdukasi = serialize($('#form-edukasi'), 5);
-                    let formPenghargaan = serialize($('#form-penghargaan'), 4);
-                    let formPengalaman = serialize($('#form-pengalaman'), 5);
-                    let formRujukan = serialize($('#form-rujukan'), 4);
-                    let formBahasa = serialize($('#form-bahasa'), 2);
-                    let formKemampuan = serialize($('#form-kemampuan'), 1);
-
-                    let datas = {
-                        'customer': {
-                            ...formCustomer[0],
-                            'foto': foto_base64,
-                            'list_sosial_media': formSocialmedia,
-                            'list_edukasi': formEdukasi,
-                            'list_penghargaan': formPenghargaan,
-                            'list_pengalaman': formPengalaman,
-                            'list_rujukan': formRujukan,
-                            'list_bahasa': formBahasa,
-                            'list_kemampuan': formKemampuan,
-                        }
-                    }
-
-                    let save_url = '/save' + (unique_code != null ? `/${unique_code}` : ``)
-
-                    $.ajax({
-                        url: save_url,
-                        type: 'POST',
-                        data: JSON.stringify(datas),
-                        contentType: 'application/json',
-                        beforeSend: () => {
-                            //tampilkan loader
-                            Swal.fire({
-                                title: 'Almost Done',
-                                html: 'We generate your data, please choose template after this loading finish',
-                                allowOutsideClick: false,
-                                showCancelButton: false,
-                                showConfirmButton: false,
-                                onBeforeOpen: () => {
-                                    Swal.showLoading()
-                                },
-                            })
-                        },
-                        success: (res) => {
-                            if (res != 'ERROR') {
-                                swal.close();
-                                if (unique_code == null) {
-                                    unique_code = res
-                                }
-                                window.location.replace(`/choose-template/${unique_code}`)
-                            } else {
-                                swal.close();
-                                alert('Failed to save your data')
-                            }
-                        },
-                        error: (err) => {
-                            swal.close();
-                            alert('Error on saving your data')
-                        }
-                    })
-                })
-        } else {
+        if (!unique_code && !foto) {
             alert('Please upload your photo')
+        } else {
+            if(foto) readFileAsDataURL(foto).then((foto_base64) => upload_data(foto_base64))
+            else upload_data()
         }
     })
 })
