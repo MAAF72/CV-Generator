@@ -1,3 +1,5 @@
 {
-    "liveServer.settings.port": 5501
+    "liveServer.settings.port": 5501,
+    "python.pythonPath": "application/web/env/bin/python3",
+    "python.analysis.extraPaths": ["application/web"]
 }
