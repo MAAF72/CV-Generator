@@ -1,0 +1,120 @@
+#header{
+ display: grid;
+ grid-template-columns: 2fr 5fr;
+ background:#808080;
+ color: white;
+}
+#ui{
+ display: grid;
+ grid-template-columns: 0.2fr 0.5fr;
+ width: 200%;
+}
+.skills{
+ display: grid;
+ grid-template-columns: 1fr 1fr;
+}
+#ent{
+ /*margin-top: 0px;*/
+ margin-left:10px;
+}
+#space{
+ margin-left: 40px;
+
+}
+.info {
+  width: 200%;
+}
+.info2 {
+  width: 95%;
+}
+.date {
+  font-weight: 600;
+}
+.bottomM{
+ margin-bottom:20px;
+
+}
+.topN{
+ margin-top: 30px;
+ margin-bottom:0px;
+
+}
+#progress-bar{
+ background: #CDCDCF;
+ height: 10px;
+ margin-top: 5px;
+ width: 100px;
+}
+#progress{
+ background: black;
+ height: 10px;
+ width: 80px;
+}
+.topM{
+ margin-top: 20px;
+ margin-bottom: 10px;
+
+}
+#contacts{
+ background: #CDCDCF;
+ padding: 10px;
+}
+#skills{
+ background: #CDCDCF;
+ padding: 10px;
+}
+#exp1{
+ margin-right: 20px;
+ display: grid;
+ grid-template-columns: 1fr 2fr 4fr;
+}
+p{
+ text-align: justify;
+}
+#head{
+ font-weight: bold;
+}
+svg{
+ height: 1em;
+ margin-left: 40px;
+}
+#left-mrgm{
+ margin-left: 40px;
+ font-weight: bold;
+}
+.box{
+ height: 20px;
+ width: 20px;
+ background: black;
+}
+#image{
+ height: 150px;
+ width: 150px;
+ margin-top: 20px;
+ margin-bottom: 20px;
+ margin-left: 20px;
+}
+#name{
+ letter-spacing: 0.5em;
+ font-weight: bold;
+ margin-top: 20px;
+}
+#web{
+ letter-spacing: 0.5em;
+ margin-top: 24px;
+ font-size: 17px;
+}
+#underline{
+ width: 440px;
+ height: 7px;
+ margin-top: 20px;
+ background: #CECED0;
+}
+#exp{
+ background: #CDCDCF;
+ padding: 10px;
+}
+#wrapper{
+ padding: 0px;
+ margin-top: 50px;
+}
