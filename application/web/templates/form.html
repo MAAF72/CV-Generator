@@ -18,7 +18,7 @@
                 <div class="row" style="width: 100%">
                     <div class="col-6">
                         <h5>Ready for choose Template?</h5>
-                        <p>Lorem ipsum dolor sit amet, consectur adipiscing elit.</p>
+                        <p>The next process is to choose the cv you like.</p>
                         <button type="button" class="btn btn-light text-uppercase font-weight-bolder" id=btn-back-homepage onclick="location.href = '/';">Back</button>
                         <button type="button" id="btn-choose-template" class="btn btn-primary text-uppercase font-weight-bolder">Choose Template</button>
                     </div>
@@ -37,11 +37,12 @@
                 <!--Content Kanan-->
                 <div class="col-6">
                     <div class="col div-container">
-                        <h5>Identity</h5>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        <h5>Personal Information</h5>
+                        <p>Your identity for recruiters to contact you.</p>
                         <form id="form-customer">
-                            <div class="form-group">Picture
-                                <input type="file" name="photo" id="photo" class="form-control-file" accept="image/*" required>
+                            <div class="form-group">
+                                <img id="customer_photo" src="https://socialistmodernism.com/wp-content/uploads/2017/07/placeholder-image.png" alt="your photo" class="image-preview">
+                                <input type="file" name="photo" id="photo" class="form-control-file" onchange="readPHOTO(this);" accept="image/*" required>
                             </div>
                             <div class="div-content-row">
                                 <input type="text" class="form-control" id="nama" name="nama" aria-describedby="fullname" placeholder="Your Full Name" required>
@@ -63,7 +64,7 @@
                     </div>
                     <div class="col div-container">
                         <h5>Social Media</h5>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        <p>Your Social media for recruiters connect with you</p>
                         <form id="form-socialmedia">
                             <!-- Let the javascript do the magics -->
                         </form>
@@ -74,7 +75,7 @@
                     </div>
                     <div class="col div-container">
                         <h5>Educate</h5>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        <p>Education you have (formal and non-formal).</p>
                         <form id="form-edukasi">
                             <!-- Let the javascript do the magics -->
                         </form>
@@ -83,8 +84,8 @@
                         </div>
                     </div>
                     <div class="col div-container">
-                        <h5>Penghargaan</h5>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        <h5>Achievements</h5>
+                        <p>The achievements you have achieved.</p>
                         <form id="form-penghargaan">
                             <!-- Let the javascript do the magics -->
                         </form>
@@ -96,8 +97,8 @@
                 <!--Content kiri-->
                 <div class="col-6">
                     <div class="col div-container">
-                        <h5>Pengalaman</h5>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        <h5>Experience</h5>
+                        <p>Valuable and important experience you have.</p>
                         <form id="form-pengalaman">
                             <!-- Let the javascript do the magics -->
                         </form>
@@ -106,8 +107,8 @@
                         </div>
                     </div>
                     <div class="col div-container">
-                        <h5>Rujukan</h5>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        <h5>Reference</h5>
+                        <p>A contactable reference for recruiters.</p>
                         <form id="form-rujukan">
                             <!-- Let the javascript do the magics -->
                         </form>
@@ -116,8 +117,8 @@
                         </div>
                     </div>
                     <div class="col div-container">
-                        <h5>Bahasa</h5>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        <h5>Language</h5>
+                        <p>The language you have mastered.</p>
                         <form id="form-bahasa">
                             <!-- Let the javascript do the magics -->
                         </form>
@@ -128,8 +129,8 @@
                         </div>
                     </div>
                     <div class="col div-container">
-                        <h5>Kemampuan</h5>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        <h5>Skills</h5>
+                        <p>Your ability and proficiency in using tools.</p>
                         <form id="form-kemampuan">
                             <!-- Let the javascript do the magics -->
                         </form>

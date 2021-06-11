@@ -13,6 +13,21 @@ window.onscroll = function() {
   }
 }
 
+//show photo when uploaded image
+function readPHOTO(input) {
+
+    //the true condition is when the input have value
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $('#customer_photo')
+                .attr('src', e.target.result)
+                .height(200);
+        };
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
 function toJson(obj) {
     let data = {}
     for (const [k, v] of Object.entries(obj)) { data[v.name] = v.value }

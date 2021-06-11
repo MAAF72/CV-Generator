@@ -108,4 +108,17 @@ body {
   user-select: none;
 }
 
+.image-preview {
+  height: 200px;
+  margin: 12px;
+}
+
+.z-index-bg {
+  z-index: -1;
+  position: absolute;
+  height: 500px;
+  left: 65%;
+  top: 30%;
+}
+
 /*# sourceMappingURL=modif.css.map */
