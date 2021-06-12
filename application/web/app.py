@@ -133,7 +133,7 @@ def save(unique_code):
 
             return unique_code
         except Exception as e:
-            print(e)
+            print(e.with_traceback())
             return 'ERROR'
     return 'OK'
 
