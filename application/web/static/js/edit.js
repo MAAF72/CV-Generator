@@ -2,11 +2,24 @@ $(function() {
     const path_name = window.location.pathname.split('/')
     const unique_code = path_name[2]
 
+    async function getFileFromURL(url, name, defaultType='image/jpeg') {
+        let file_promise = await new Promise(async (resolve) => {
+            const response = await fetch(url)
+            const data = await response.blob()
+            resolve(new File([data], name, {
+                type: response.headers.get('content-type') || defaultType,
+            }))
+        })
+        return file_promise
+    }
+
     $.get(`/get/${unique_code}`, dataType='json')
         .done((res) => {
             const customer = res.customer
 
             fill_identity(customer)
+
+            getFileFromURL(customer.foto, 'previous-photo.jpg').then((file) => readPhoto(file))
 
             const list_bahasa = customer.list_bahasa
             for (let i = 0; i < list_bahasa.length; i++) {

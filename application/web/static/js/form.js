@@ -13,19 +13,14 @@ window.onscroll = function() {
   }
 }
 
-//show photo when uploaded image
-function readPHOTO(input) {
-
-    //the true condition is when the input have value
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
-        reader.onload = function (e) {
-            $('#customer_photo')
-                .attr('src', e.target.result)
-                .height(200);
-        };
-        reader.readAsDataURL(input.files[0]);
+function readPhoto(file) {
+    var reader = new FileReader()
+    reader.onload = function (e) {
+        $('#customer_photo')
+            .attr('src', e.target.result)
+            .height(200)
     }
+    reader.readAsDataURL(file)
 }
 
 function toJson(obj) {
@@ -52,10 +47,10 @@ function serialize(form, cnt) {
 async function readFileAsDataURL(file) {
     let result_base64 = await new Promise((resolve) => {
         let fileReader = new FileReader()
-        fileReader.onload = (e) => resolve(fileReader.result)
+        fileReader.onload = () => resolve(fileReader.result)
         fileReader.readAsDataURL(file)
     })
-    return result_base64;
+    return result_base64
 }
 
 function element_from_string(str) {
@@ -356,9 +351,13 @@ $(function() {
         if (!unique_code && !foto) {
             alert('Please upload your photo')
         } else {
-            if(foto) readFileAsDataURL(foto).then((foto_base64) => upload_data(foto_base64))
+            if (foto) readFileAsDataURL(foto).then((foto_base64) => upload_data(foto_base64))
             else upload_data()
         }
+    })
+
+    $('#photo').change(function() {
+        readPhoto(this.files[0])
     })
 })
 /* End : Button Handler Using JQuery */
