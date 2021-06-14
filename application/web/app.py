@@ -48,7 +48,9 @@ def choose_template(unique_code):
 def download(unique_code):
     ctx = {
         'title': 'Finish | Download CV',
-        'css': [],
+        'css': [
+            'download.css'
+        ],
         'js': [
             'download.js',
         ]

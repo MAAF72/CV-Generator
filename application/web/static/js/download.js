@@ -29,6 +29,7 @@ $(function() {
                 
 
     function generate() {
+        
         $.ajax({
             url: `${generator_endpoint}/${unique_code}`,
             type: 'GET',
@@ -42,6 +43,7 @@ $(function() {
                     swal.close();
                     alert('Failed to generate your cv')
                 }
+                $('#cv-preview-section').html(`<embed src="${file_url}#toolbar=0&navpanes=0&scrollbar=0" class="cv-preview">`)
             },
             error: (err) => {
                 swal.close();
