@@ -12,28 +12,28 @@
     {% for e in css %}<link href="{{ url_for('static', filename='css/' + e) }}" rel="stylesheet">{% endfor %}
     <body>
         <!--Content-->
-        <div class="container">
+        <div class="container white-space-download-page">
             <div class="row">
                 <div class="col-12">
-                    <div class="row">
+                    <div class="d-flex">
 
                         {% for t in templates %}
-                        <div class="radio col-4" data-value="{{t}}"><img class="cv-preview" src="{{ templates[t].preview }}"></div>
+                        <div class="radio col-4 card p-1 m-1" data-value="{{t}}"><img class="cv-preview flex-fill" src="{{ templates[t].preview }}"></div>
                         {% endfor %}
-
 
                     </div>
                 </div>
             </div>
         </div>
-        <div class="container fixed-bottom">
+
+        <div class="mx-auto navbar fixed-bottom" id="navbar-div">
             <div class="row action p-5">
                 <div class="col-6 m-auto">
                     <div>
-                        <h5>Your CV ready to Download</h5>
-                        <p>your cv is ready to download.</p>
+                        <h5>Choose your template</h5>
+                        <p>choose the template you like so that your cv looks professional.</p>
                         <button type="button" class="btn btn-light text-uppercase font-weight-bolder" id="edit-cv">Back to input my data</button>
-                        <button type="button" class="btn btn-primary text-uppercase font-weight-bolder" id="download-cv">Download to my CV</button>
+                        <button type="button" class="btn btn-primary text-uppercase font-weight-bolder" id="download-cv">Download My CV</button>
                     </div>
                 </div>
                 <div class="col-6 m-auto">
@@ -43,6 +43,7 @@
                 </div>
             </div>
         </div>
+
         </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>

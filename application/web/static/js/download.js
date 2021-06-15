@@ -1,3 +1,16 @@
+//navbar show when scroll down
+window.onscroll = function() {
+    var currentScrollPos = window.pageYOffset;
+  
+    // 20 is an arbitrary number here, just to make you think if you need the prevScrollpos variable:
+    if (currentScrollPos < 20) {
+      // I am using 'display' instead of 'top':
+      document.getElementById("navbar-div").className = 'mx-auto navbar fixed-bottom';
+    } else {
+      document.getElementById("navbar-div").className = "d-none";
+    }
+  }
+
 $(function() {
     const path_name = window.location.pathname.split('/')
     const unique_code = path_name[2]
