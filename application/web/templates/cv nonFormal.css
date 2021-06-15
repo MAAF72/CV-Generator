@@ -23,7 +23,9 @@ img {
   height: 1em;
   overflow: visible;
 }
-
+.fixDown{
+    margin-bottom: -13px;
+}
 .rightN{
     width: 150%;
     margin-right: 90px;
@@ -52,7 +54,8 @@ section {
   display: grid;
   grid-template-columns: 1fr 4fr;
   grid-gap: 20px;
-  padding: 24px 0;
+  padding: 20px 5px;
+  margin-top: 0px;
   border-bottom: 1px solid lightgrey;
 }
 
@@ -93,6 +96,7 @@ img.picture {
   margin: 5px;
   width: 70%;
   font-size: medium;
+  margin-bottom: 15px;
 }
 
 .link-item {
@@ -110,8 +114,8 @@ img.picture {
 ***********************************/
 
 .job {
-  padding-bottom: 24px;
-  margin-bottom: 24px;
+  padding-bottom: 8px;
+  margin-bottom: 18px;
   border-bottom: 1px solid lightgrey;
 }
 
