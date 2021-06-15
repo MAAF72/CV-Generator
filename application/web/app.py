@@ -13,7 +13,8 @@ def home():
         'js': [
             'landing.js',
             'input.js',
-        ]
+        ],
+        'templates': fb.read_templates()
     }
     return render_template('landing.html', **ctx)
 

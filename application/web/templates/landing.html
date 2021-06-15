@@ -14,7 +14,11 @@
     <body>
         <!--z-index-->
         <div>
-            <img src="https://i.pinimg.com/originals/d5/97/05/d597059b9918d0fa415939bf899fb3e4.png" class="z-index-bg">
+
+            {% for t in templates %}
+            <img src="{{ templates[t].preview }}" class="z-index-bg shadow-lg" data-value="{{t}}"">
+            {% endfor %}
+
         </div>  
         
         <!--Content-->
@@ -24,25 +28,25 @@
                     <!--Nav bar favicon-->
                     <div class="row">
                         <div class="d-inline p-2 text-center text-lg-start">
-                            <h4>CV-Generator</h4>
+                            <h4 class="text-secondary">CV-Generator</h4>
                         </div>
                     </div>
                     <h1>
-                        Make your CV easily just input and finish, totaly FREE
+                        Make your CV easily just input and <span class="text-primary">finish,</span> totaly FREE
                     </h1>
-                    <p>
+                    <p class="text-secondary">
                         Only input your data, choose template, a single wink and voila download yourcv.pdf
                     </p>
                     <!-- Action -->
                     <div class="row">
                         <div class="col-5 div-container">
                             <h5>Create CV</h5>
-                            <p>create your cv easily and quickly, no need to design.</p>
+                            <p class="text-secondary">create your cv easily and quickly, no need to design.</p>
                             <button type="button" onclick="location.href = '/input';" class="btn btn-primary mb-2">CREATE MY CV</button>
                         </div>
                         <div class="col-5 div-container">
                             <h5>Edit My Old CV</h5>
-                            <p>unique code obtained before you download your old cv.</p>
+                            <p class="text-secondary">unique code obtained before you download your old cv.</p>
                             <form class="form-inline">
                                 <div class="form-group mx-sm-3 mb-2">
                                     <label for="label-input-unique-code" class="sr-only">unique code</label>
@@ -57,7 +61,7 @@
         </div>
         <footer class="text-center text-lg-start">
             <div class="text-center p-3">
-                <p>1301180072 - 1301180154 - 1301180023 - 1301184059</p>
+                <p class="text-muted">1301180072 - 1301180154 - 1301180023 - 1301184059</p>
             </div>
         </footer>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
