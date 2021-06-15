@@ -19,7 +19,7 @@ def home():
 
 @app.route('/input')
 def input():
-    test = True
+    test = False
     ctx = {
         'title': 'Input Data',
         'css': [],
@@ -32,6 +32,9 @@ def input():
 
 @app.route('/choose-template/<unique_code>')
 def choose_template(unique_code):
+    if fb.read_cv(unique_code) is None:
+      abort(404)
+
     ctx = {
         'title': 'Choose Template You Like',
         'css': [
@@ -46,6 +49,9 @@ def choose_template(unique_code):
 
 @app.route('/download/<unique_code>')
 def download(unique_code):
+    if fb.read_cv(unique_code) is None:
+      abort(404)
+
     ctx = {
         'title': 'Finish | Download CV',
         'css': [

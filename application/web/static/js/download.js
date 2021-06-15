@@ -17,7 +17,6 @@ $(function() {
                 a.download = `CVGen-${unique_code}.pdf`
                 a.click()
                 window.URL.revokeObjectURL(url)
-                alert('Your file has downloaded!')
             })
             .catch(() => alert('Gagal cok'))
     })
